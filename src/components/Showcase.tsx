@@ -11,63 +11,63 @@ import modelConfig from '../models-config.json';
 
 const modelData = [
   {
-    "model": "2025_lamborghini_urus_se.glb",
-    "yOffset": -0.1,
-    "scaleMult": 0.74,
-    "rotationOffset": 0
-  },
-  {
-    "model": "2024_lamborghini_revuelto.glb",
+    "model": "2019_lamborghini_huracan_evo.glb",
     "yOffset": -0.05,
-    "scaleMult": 0.49,
+    "scaleMult": 0.55,
     "rotationOffset": 0
   },
   {
-    "model": "rolls-royce_2020_mansory_wraith.glb",
+    "model": "mclaren_570s_coupe.glb",
+    "yOffset": -0.05,
+    "scaleMult": 0.58,
+    "rotationOffset": 0
+  },
+  {
+    "model": "2021_cadillac_escalade_premium_luxury.glb",
+    "yOffset": -0.1,
+    "scaleMult": 0.65,
+    "rotationOffset": 0
+  },
+  {
+    "model": "rolls.glb",
     "yOffset": -0.05,
     "scaleMult": 0.648,
-    "rotationOffset": 0
-  },
-  {
-    "model": "2023_chevrolet_corvette_z06.glb",
-    "yOffset": -0.021,
-    "scaleMult": 0.529,
     "rotationOffset": 0
   }
 ];
 
 const sections = [
   {
-    label: "01 — Hybrid Super SUV",
-    title: "Lamborghini\nUrus SE",
-    desc: "The first PHEV Super SUV. 800 CV of combined power, leading the charge into a new era of performance and sustainability.",
-    tags: ["Hybrid", "800 CV", "6-Pot Brakes"],
-    color: "#FF6600",
-    accent: "#FF8C00"
+    label: "01 — Italian Masterpiece",
+    title: "Lamborghini\nHuracan EVO",
+    desc: "The evolution of the most successful V10 Lamborghini. Experience the perfect fusion of technology and performance in Mantis Green.",
+    tags: ["V10", "640 HP", "AWS"],
+    color: "#4CAF50",
+    accent: "#E63946"
   },
   {
-    label: "02 — V12 Hybrid Vision",
-    title: "Lamborghini\nRevuelto",
-    desc: "The successor to the Aventador. A plug-in hybrid masterpiece with a naturally aspirated V12 at its heart.",
-    tags: ["V12 PHEV", "1015 CV", "Arancio Apodis"],
-    color: "#E15500",
-    accent: "#FFA500"
-  },
-  {
-    label: "03 — Bespoke Luxury",
-    title: "Mansory\nWraith",
-    desc: "Pure opulence reimagined by Mansory. A whisper of luxury combined with an aggressive stance that commands respect on the road.",
-    tags: ["V12 Biturbo", "Bespoke", "Forged Carbon"],
+    label: "02 — British Precision",
+    title: "McLaren\n570s",
+    desc: "A pure McLaren. Delivering the thrills of a supercar in a versatile package, finished in stealthy Black on Black.",
+    tags: ["Twin Turbo V8", "562 HP", "Carbon Fiber"],
     color: "#1A1A1A",
-    accent: "#C5A47E"
+    accent: "#E63946"
   },
   {
-    label: "04 — American Apex",
-    title: "Corvette\nZ06",
-    desc: "The track-focused beast with a flat-plane crank V8. Experience the soul of high-performance engineering on the open road.",
-    tags: ["Flat-Plane V8", "670 HP", "Rapid Blue"],
-    color: "#0047AB",
-    accent: "#00BFFF"
+    label: "03 — American Luxury",
+    title: "Cadillac\nEscalade",
+    desc: "The icon of luxury SUVs, enhanced with custom star-headliner and premium appointments. Pure black excellence.",
+    tags: ["V8", "420 HP", "Custom Stars"],
+    color: "#1A1A1A",
+    accent: "#E63946"
+  },
+  {
+    label: "04 — Absolute Pinnacle",
+    title: "Rolls-Royce\nCullinan",
+    desc: "The first all-terrain SUV from Rolls-Royce. Effortless everywhere, providing supreme comfort and presence in pure White.",
+    tags: ["V12", "Bespoke", "Starlight"],
+    color: "#FFFFFF",
+    accent: "#E63946"
   }
 ];
 
@@ -96,8 +96,9 @@ const Showcase: React.FC = () => {
     let camera: THREE.PerspectiveCamera;
     let renderer: THREE.WebGPURenderer;
     const carGroupsRefLocal: THREE.Group[] = [];
+    let isCancelled = false;
+
     const init = async () => {
-      carGroupsRef.current = carGroupsRefLocal;
       scene = new THREE.Scene();
       scene.background = null;
 
@@ -105,6 +106,11 @@ const Showcase: React.FC = () => {
       camera.position.set(0, 0, 7.5);
 
       renderer = new THREE.WebGPURenderer({ antialias: true, alpha: true, sampleCount: 4 });
+      if (isCancelled) {
+        renderer.dispose();
+        return;
+      }
+
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.AgXToneMapping;
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -119,6 +125,11 @@ const Showcase: React.FC = () => {
       containerRef.current?.appendChild(canvas);
 
       await renderer.init();
+      if (isCancelled) {
+        renderer.dispose();
+        canvas.remove();
+        return;
+      }
 
       stats = new Stats({ trackGPU: false });
       stats.init(renderer);
@@ -144,6 +155,7 @@ const Showcase: React.FC = () => {
 
       // Load models
       for (let i = 0; i < modelData.length; i++) {
+        if (isCancelled) break;
         const data = modelData[i];
         
         // Resolve URL
@@ -154,11 +166,10 @@ const Showcase: React.FC = () => {
         
         try {
           const gltf = await loader.loadAsync(modelUrl);
+          if (isCancelled) break;
           const group = gltf.scene;
           
           // Auto-Fit Logic
-          // We compute a fresh bounding box based only on visible mesh geometry 
-          // to avoid "poisoned" boxes from lights or helpers in the GLB.
           const computeVisibleBox = (obj: THREE.Object3D) => {
             const b = new THREE.Box3();
             obj.traverse((child: any) => {
@@ -173,53 +184,66 @@ const Showcase: React.FC = () => {
           };
 
           const box = computeVisibleBox(group);
-          const size = box.getSize(new THREE.Vector3());
           const center = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3());
           
-          // Center geometry to local origin
-          group.traverse((child: any) => {
-            if (child.isMesh) {
-              child.position.x -= center.x;
-              child.position.y -= center.y;
-              child.position.z -= center.z;
-            }
-          });
+          // Re-center by offsetting the scene root instead of individual meshes
+          // This prevents wheels and nested parts from detaching or misaligning
+          group.position.set(-center.x, -center.y, -center.z);
+          
+          // Wrap in a wrapper group so we rotate/scale around the new center
+          const container = new THREE.Group();
+          container.add(group);
 
           // Initial scale/pos
-          group.scale.setScalar(1);
-          group.position.set(0, 0, 0);
+          container.scale.setScalar(1);
+          container.position.set(0, 0, 0);
           
-          group.userData = { 
+          container.userData = { 
             originalSize: size.clone(),
             yOffset: data.yOffset || 0,
             scaleMult: data.scaleMult || 1.0, 
             rotOffset: data.rotationOffset, 
             baseRotation: Math.PI / 4 + data.rotationOffset 
           };
-          group.rotation.y = group.userData.baseRotation;
+          container.rotation.y = container.userData.baseRotation;
           
-          group.traverse((child: any) => {
+          container.traverse((child: any) => {
             if (child.isMesh && child.material) {
               const mat = child.material;
               if (typeof mat.metalness === 'number') mat.metalness = Math.max(mat.metalness, 0.5);
               if (typeof mat.roughness === 'number') mat.roughness = Math.min(mat.roughness, 0.2);
+              
+              // Ensure consistent shadow/side rendering
+              mat.side = THREE.DoubleSide;
             }
           });
           
-          scene.add(group);
-          carGroupsRefLocal.push(group);
-          group.visible = false;
+          scene.add(container);
+          carGroupsRefLocal.push(container);
+          container.visible = false;
         } catch (err) {
+          if (isCancelled) break;
           setLoadError("Some 3D models could not be loaded. Please check the console for details.");
-          console.error(`[Showcase] ERROR: Model failed to load via URL: ${modelUrl}. 
-          If you are seeing 'Unexpected token <', it means the file was not found (404) and the server returned index.html. 
-          Please update src/models-config.json with a working CDN link if local files are missing.`, err);
-          // Zero-content Group to prevent crashes while maintaining section count
           const dummy = new THREE.Group();
           dummy.userData = { baseRotation: 0, rotOffset: 0 };
           scene.add(dummy);
           carGroupsRefLocal.push(dummy);
         }
+      }
+
+      if (isCancelled) {
+        carGroupsRefLocal.forEach(g => {
+          g.traverse((child: any) => {
+            if (child.isMesh) {
+              child.geometry.dispose();
+              if (child.material.dispose) child.material.dispose();
+            }
+          });
+        });
+        renderer.dispose();
+        canvas.remove();
+        return;
       }
 
       if (carGroupsRefLocal.length > 0) carGroupsRefLocal[0].visible = true;
@@ -390,6 +414,7 @@ const Showcase: React.FC = () => {
     init();
 
     return () => {
+      isCancelled = true;
       window.removeEventListener('resize', onWindowResize);
       window.removeEventListener('pointermove', updateMouse);
       
@@ -545,16 +570,16 @@ const Showcase: React.FC = () => {
               {section.label}
             </div>
             
-            <h2 className="text-5xl md:text-8xl font-serif font-bold mb-8 leading-[0.85] tracking-tighter whitespace-pre-line uppercase">
+            <h2 className="text-5xl md:text-8xl font-serif font-bold mb-8 leading-[0.85] tracking-tighter whitespace-pre-line uppercase text-black">
               {section.title.split('\n').map((line, idx) => (
-                <span key={idx} className="block last:text-white/40">
+                <span key={idx} className="block last:text-black/40">
                   {line}
                 </span>
               ))}
             </h2>
 
             <div className={`flex flex-col gap-8 ${i % 2 === 0 ? 'items-start' : 'items-end'}`}>
-              <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-sm font-light">
+              <p className="text-black/70 text-base md:text-lg leading-relaxed max-w-sm font-light">
                 {section.desc}
               </p>
               
@@ -562,7 +587,7 @@ const Showcase: React.FC = () => {
                 {section.tags.map((tag, j) => (
                   <span 
                     key={j} 
-                    className="px-4 py-1.5 border border-white/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-medium transition-all hover:bg-white/5"
+                    className="px-4 py-1.5 border border-black/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-medium transition-all hover:bg-black/5"
                     style={{ borderColor: j === 0 ? `${section.accent}44` : undefined, color: j === 0 ? section.accent : undefined }}
                   >
                     {tag}

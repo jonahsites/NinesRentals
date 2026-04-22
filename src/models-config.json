@@ -4,7 +4,10 @@
     "2025_lamborghini_urus_se.glb": "https://dl.dropboxusercontent.com/scl/fi/74774nxsasm7ce8exwv2r/2025_lamborghini_urus_se.glb?rlkey=sr9urz2j60zg5iz315tyymuf0&st=jrecps2n",
     "2024_lamborghini_revuelto.glb": "https://dl.dropboxusercontent.com/scl/fi/x8uegy8bgvwztocpmmvhp/2024_lamborghini_revuelto.glb?rlkey=ozgyvk7aa1f5sjp37elj4gnxv&st=m6b6clt3",
     "2023_chevrolet_corvette_z06.glb": "https://dl.dropboxusercontent.com/scl/fi/p4yfh2hogv6szwnee96wd/2023_chevrolet_corvette_z06.glb?rlkey=48iy4txmm7tdgngchbfpehl26&st=r0ceoerj",
-    "rolls-royce_2020_mansory_wraith.glb": "https://dl.dropboxusercontent.com/scl/fi/dwted24pmk5cauxlcwopy/rolls-royce_2020_mansory_wraith.glb?rlkey=2xpo1vn3payw5iatlgbq4bfs4&st=wahu6q01"
+    "rolls.glb": "https://dl.dropboxusercontent.com/scl/fi/qdvzvc43l5cx9w160jwbf/rolls.glb?rlkey=h15vl2r4a16l299m4ft1wa162&st=kq1e22ld",
+    "2019_lamborghini_huracan_evo.glb": "https://dl.dropboxusercontent.com/scl/fi/182lm97cx2282lva8w6or/2019_lamborghini_huracan_evo.glb?rlkey=heq5okt2n1f9czny4w9n4b674&st=bdm8fh5l",
+    "mclaren_570s_coupe.glb": "https://dl.dropboxusercontent.com/scl/fi/bpzlu4clgvrhtjhgof21u/mclaren_570s_coupe.glb?rlkey=sslmosxezkod8gqy7f4j66txw&st=zutahqat",
+    "2021_cadillac_escalade_premium_luxury.glb": "https://dl.dropboxusercontent.com/scl/fi/8jbudb1gm61om3njxdgtf/2021_cadillac_escalade_premium_luxury.glb?rlkey=2bdixolqn9vmfxtcsacn508zo&st=6efnl8m6"
   },
   "cors_fix": "I have changed 'www.dropbox.com' to 'dl.dropboxusercontent.com'. This bypasses the security (CORS) blocks that prevent browsers from loading files from Dropbox.",
   "instructions": "1. Upload your .glb files to Dropbox. 2. Copy the share link. 3. Paste it above. 4. Change 'www.dropbox.com' to 'dl.dropboxusercontent.com'."
