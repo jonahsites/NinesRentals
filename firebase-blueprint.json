@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "booking": {
+      "title": "Booking",
+      "description": "A rental booking for a specific vehicle",
+      "type": "object",
+      "properties": {
+        "carId": {
+          "type": "number",
+          "description": "ID of the vehicle being booked"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date of the rental"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date of the rental"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase UID of the user who made the booking"
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "Email address of the user"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "confirmed", "cancelled"],
+          "description": "Current status of the booking"
+        },
+        "totalPrice": {
+          "type": "number",
+          "description": "Total price calculated for the booking"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the booking was created"
+        }
+      },
+      "required": ["carId", "startDate", "endDate", "userId", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "bookings/{bookingId}": {
+      "schema": "booking",
+      "description": "Collection of all rental bookings"
+    }
+  }
+}

@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowUpRight, Search, Filter } from 'lucide-react';
+import { X, ArrowUpRight, Search, Filter, Calendar, Info, CheckCircle2 } from 'lucide-react';
+import { db, auth, signInWithGoogle } from '../lib/firebase';
+import { collection, addDoc, query, where, onSnapshot, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { format, isWithinInterval, parseISO, isAfter, isBefore, startOfDay } from 'date-fns';
 
 const categories = ["All", "Ferrari", "Lamborghini", "Rolls Royce", "Porsche", "McLaren", "Bugatti", "Corvette", "Mercedes", "Cadillac"];
 
@@ -96,15 +100,119 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
   const [search, setSearch] = useState("");
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  
+  // Booking States
+  const [user, setUser] = useState<User | null>(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [existingBookings, setExistingBookings] = useState<any[]>([]);
+  const [bookingStatus, setBookingStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [bookingError, setBookingError] = useState("");
 
-  // Reset active image when selected car changes
-  React.useEffect(() => {
+  // Auth Listener
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (u) => setUser(u));
+    return () => unsub();
+  }, []);
+
+  // Fetch Bookings for Selected Car - Only if user is signed in
+  useEffect(() => {
+    if (!selectedCar || !user) {
+      setExistingBookings([]);
+      return;
+    }
+
+    const q = query(
+      collection(db, 'bookings'),
+      where('carId', '==', selectedCar.id),
+      where('status', 'in', ['pending', 'confirmed'])
+    );
+
+    const unsub = onSnapshot(q, (snapshot) => {
+      const bookings = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setExistingBookings(bookings);
+    });
+
+    return () => unsub();
+  }, [selectedCar]);
+
+  // Reset booking form
+  useEffect(() => {
     if (selectedCar) {
       setActiveImage(selectedCar.image);
+      setStartDate("");
+      setEndDate("");
+      setBookingStatus('idle');
+      setBookingError("");
     } else {
       setActiveImage(null);
     }
   }, [selectedCar]);
+
+  const checkAvailability = () => {
+    if (!startDate || !endDate) return true;
+    const start = parseISO(startDate);
+    const end = parseISO(endDate);
+
+    if (isBefore(end, start)) return false;
+    if (isBefore(start, startOfDay(new Date()))) return false;
+
+    // Check overlaps
+    for (const booking of existingBookings) {
+      const bStart = parseISO(booking.startDate);
+      const bEnd = parseISO(booking.endDate);
+
+      const overlap = 
+        isWithinInterval(start, { start: bStart, end: bEnd }) ||
+        isWithinInterval(end, { start: bStart, end: bEnd }) ||
+        isWithinInterval(bStart, { start, end }) ||
+        isWithinInterval(bEnd, { start, end });
+      
+      if (overlap) return false;
+    }
+    return true;
+  };
+
+  const handleBooking = async () => {
+    if (!user) {
+      await signInWithGoogle();
+      return;
+    }
+
+    if (!startDate || !endDate) {
+      setBookingError("Please select both start and end dates.");
+      return;
+    }
+
+    if (!checkAvailability()) {
+      setBookingError("Selected dates are already booked. Please choose other dates.");
+      return;
+    }
+
+    setBookingStatus('loading');
+    setBookingError("");
+
+    try {
+      await addDoc(collection(db, 'bookings'), {
+        carId: selectedCar?.id,
+        startDate,
+        endDate,
+        userId: user.uid,
+        userEmail: user.email,
+        status: 'pending',
+        createdAt: serverTimestamp(),
+        totalPrice: selectedCar ? selectedCar.price * (Math.max(1, Math.round((parseISO(endDate).getTime() - parseISO(startDate).getTime()) / (1000 * 60 * 60 * 24)))) : 0
+      });
+      setBookingStatus('success');
+    } catch (err) {
+      console.error(err);
+      setBookingStatus('error');
+      setBookingError("Failed to create booking. Please try again.");
+    }
+  };
 
   const filteredCars = (cars).filter(car => 
     (activeCategory === "All" || car.category === activeCategory) &&
@@ -182,8 +290,14 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
                     </h2>
                     
                     <div className="flex items-baseline gap-4 mb-10">
-                      <span className="text-3xl font-bold text-black">${selectedCar.price}</span>
-                      <span className="text-black/30 text-xs uppercase tracking-widest font-bold">Per Day</span>
+                      <span className="text-3xl font-bold text-black uppercase tracking-tighter">Inquire for Rates</span>
+                      <span className="text-black/30 text-[8px] uppercase tracking-widest font-bold">Price Varies</span>
+                    </div>
+
+                    <div className="bg-accent/5 border-l-4 border-accent p-6 mb-10">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-black leading-relaxed">
+                        Rates are tailored to your specific needs. Pricing varies based on rental duration, insurance selection, age, and delivery location. 
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-8 border-y border-black/5 py-10 mb-10">
@@ -201,9 +315,80 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
                       {selectedCar.description || "Experience the ultimate in automotive excellence with this premium vehicle. Perfectly maintained and ready for your next journey in South Florida."}
                     </p>
 
-                    <button className="w-full py-6 bg-accent text-white text-xs font-bold uppercase tracking-[0.3em] hover:bg-accent/90 transition-all shadow-xl shadow-accent/20">
-                      Book This Vehicle
-                    </button>
+                    {/* Booking Form */}
+                    <div className="bg-black/5 p-8 border border-black/5 mb-8">
+                      <div className="flex items-center gap-2 mb-6 text-accent">
+                        <Calendar size={16} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Reserve Your Dates</span>
+                      </div>
+
+                      {bookingStatus === 'success' ? (
+                        <div className="text-center py-4">
+                          <CheckCircle2 className="mx-auto text-green-500 mb-4" size={48} />
+                          <h4 className="text-xl font-bold uppercase tracking-tighter mb-2">Booking Requested!</h4>
+                          <p className="text-xs text-black/40 uppercase tracking-widest leading-loose">
+                            We've received your request for the {selectedCar.name}. Our team will contact you shortly to finalize details.
+                          </p>
+                          <button 
+                            onClick={() => setSelectedCar(null)}
+                            className="mt-6 text-[10px] font-bold uppercase tracking-widest text-accent border-b border-accent"
+                          >
+                            Return to Fleet
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="space-y-6">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-[8px] uppercase tracking-widest font-bold text-black/40 mb-2">Pick-up</label>
+                              <input 
+                                type="date" 
+                                value={startDate}
+                                onChange={(e) => setStartDate(e.target.value)}
+                                className="w-full bg-white border border-black/10 px-4 py-3 text-xs focus:outline-none focus:border-accent"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[8px] uppercase tracking-widest font-bold text-black/40 mb-2">Return</label>
+                              <input 
+                                type="date" 
+                                value={endDate}
+                                onChange={(e) => setEndDate(e.target.value)}
+                                className="w-full bg-white border border-black/10 px-4 py-3 text-xs focus:outline-none focus:border-accent"
+                              />
+                            </div>
+                          </div>
+
+                          {bookingError && (
+                            <div className="flex items-start gap-2 bg-red-50 text-red-600 p-4 border border-red-100">
+                              <Info size={14} className="mt-0.5 shrink-0" />
+                              <p className="text-[10px] font-bold leading-tight">{bookingError}</p>
+                            </div>
+                          )}
+
+                          {existingBookings.length > 0 && (
+                            <div className="bg-accent/5 p-4 border border-accent/10">
+                              <p className="text-[8px] font-bold uppercase tracking-widest text-accent mb-2">Note: This car is already booked on:</p>
+                              <div className="flex flex-wrap gap-2">
+                                {existingBookings.map((b, i) => (
+                                  <span key={i} className="text-[10px] font-mono text-accent/60 bg-white px-2 py-1 border border-accent/5">
+                                    {format(parseISO(b.startDate), 'MMM dd')} - {format(parseISO(b.endDate), 'MMM dd')}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          <button 
+                            onClick={handleBooking}
+                            disabled={bookingStatus === 'loading'}
+                            className="w-full py-6 bg-accent text-white text-xs font-bold uppercase tracking-[0.3em] hover:bg-accent/90 transition-all shadow-xl shadow-accent/20 disabled:bg-black/20"
+                          >
+                            {bookingStatus === 'loading' ? 'Processing...' : user ? 'Confirm Rental' : 'Sign in to Book'}
+                          </button>
+                        </div>
+                      )}
+                    </div>
                     
                     <div className="mt-6 flex justify-between text-[8px] uppercase tracking-[0.2em] font-bold text-black/30">
                       <span>Verified Protection Required</span>
@@ -286,7 +471,7 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 border border-black/10 rounded-sm">
-                    <span className="text-[10px] font-bold text-accent">${car.price}/D</span>
+                    <span className="text-[9px] font-bold text-accent uppercase tracking-widest">Inquire</span>
                   </div>
                 </div>
 
@@ -318,8 +503,8 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
         </div>
 
         <div className="border-t border-black/5 pt-10 pb-10">
-          <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-black/30 text-center">
-            Prices may vary depending on rental duration, insurance qualification, and age requirements.
+          <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-accent text-center">
+            Rates are subject to change and vary based on duration, insurance qualification, age requirements, and seasonality.
           </p>
         </div>
 

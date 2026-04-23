@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { ChevronRight, Menu, MapPin, Phone, ArrowUpRight, MousePointer2 } from "lucide-react";
+import { ChevronRight, Menu, X, MapPin, Phone, ArrowUpRight, MousePointer2 } from "lucide-react";
 import Showcase from "./components/Showcase";
 import Inventory from "./components/Inventory";
 import { useState } from "react";
@@ -14,32 +14,32 @@ const navLinks = [
 ];
 
 const faqItems = [
-  { q: "What are the requirements to book?", a: "You must be at least 21 years old (25 for certain elite models), have a valid driver's license, and provide proof of full coverage insurance." },
-  { q: "What if I don't have full coverage insurance?", a: "We offer various rental car damage protection options. Please contact our concierge for details on opting in." },
-  { q: "Do I still need personal car insurance if I opt in for protection?", a: "Rental damage protection is not a substitute for personal liability insurance. Requirements vary, so please confirm with your agent." },
-  { q: "Can I add an additional driver to my rental?", a: "Yes, additional drivers can be added for a fee, provided they meet all age and insurance requirements." },
-  { q: "What if my insurance deductible is over $2,500?", a: "We may require an additional security deposit or supplemental coverage in certain high-deductible cases." },
-  { q: "Do you have any extra hidden fees?", a: "Transparency is key. We detail all costs upfront, including delivery, fuel, and security deposits." },
-  { q: "Insurance requirements for business rentals?", a: "Business rentals require commercial insurance coverage or a verified corporate policy. Contact us for specifics." },
-  { q: "Do you offer delivery service?", a: "Yes! We offer delivery to MIA, FLL, PBI, and custom locations across South Florida." },
-  { q: "How many miles are included with my rental?", a: "Standard rentals typically include 100-150 miles per day. Excess mileage fees apply thereafter." },
-  { q: "What is your security deposit policy?", a: "A refundable security deposit is required for all rentals. The amount varies based on the vehicle selected." },
-  { q: "What is your cancellation policy?", a: "Cancellations made 72+ hours in advance are eligible for a credit. Late cancellations may incur fees." },
-  { q: "Do you offer pick-up or drop-off outside of business hours?", a: "Yes, we offer flexible pick-up and drop-off options. Please coordinate with our team in advance for after-hours service." },
-  { q: "Do you offer roadside assistance?", a: "Every rental includes 24/7 roadside assistance for your peace of mind while exploring the South Florida area." },
-  { q: "Less than 72 hour reservation?", a: "While we prefer advance booking, we can often accommodate last-minute requests. Call us directly for same-day availability." },
-  { q: "Do you offer military discount?", a: "We are proud to support our service members. Please inquire about our military discount program when booking." },
+  { q: "What are the requirements to book?", a: "Must be 18+ with a valid driver’s license 🪪. Active auto insurance required for most vehicles (if you do not have insurance we can still help you out). $500–$1000 refundable damage deposit 💰 (paid in person, not upfront)." },
+  { q: "What if I don't have full coverage insurance?", a: "If you don’t have full coverage we can offer you vehicles with no insurance or third party insurance." },
+  { q: "Do I still need personal car insurance if I opt in for protection?", a: "No you do not." },
+  { q: "Can I add an additional driver to my rental?", a: "Yes you can add an additional driver to your trip." },
+  { q: "What if my insurance deductible is over $2,500?", a: "If your deductible is over $2500 it is okay we can take care of you." },
+  { q: "Do you have any extra hidden fees?", a: "No extra hidden fees!" },
+  { q: "What do I pay upfront?", a: "Daily rate & deposit (paid in person , Trust is #1)." },
+  { q: "Do you offer delivery service?", a: "Delivery service is optional and can be done upon request." },
+  { q: "How many miles are included with my rental?", a: "Miles depend on which car you would like, just inquire down below and we’ll help you out!" },
+  { q: "What is your security deposit policy?", a: "It is held to cover any damages, tickets, or violations. The deposit is refunded after return and inspection, if the vehicle is in the same condition deposit is refunded immediately." },
+  { q: "Do you offer pick-up or drop-off outside of business hours?", a: "Yes we offer pickup and drop off at any time!" },
+  { q: "Do you offer roadside assistance?", a: "Yes we offer road side assistance, at your convenience." },
+  { q: "How soon can I reserve?", a: "You can reserve at any time or just stop by our location." },
+  { q: "Do you offer military discount?", a: "Yes military discounts are given, god bless you all who serve this country!" },
 ];
 
 const specs = [
-  { val: "$715", label: "Starting / Day" },
+  { val: "Custom", label: "Rates / Day" },
   { val: "Premium", label: "Collection" },
-  { val: "FLORIDA", label: "Coverage" },
-  { val: "24/7", label: "Support" },
+  { val: "Exotic", label: "Experience" },
+  { val: "Faith", label: "Driven" },
 ];
 
 export default function App() {
   const [showInventory, setShowInventory] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -104,11 +104,63 @@ export default function App() {
           animate={{ opacity: 1 }}
           className="md:hidden pointer-events-auto"
         >
-          <button>
+          <button onClick={() => setShowMobileMenu(true)}>
             <Menu size={24} />
           </button>
         </motion.div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {showMobileMenu && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-200 bg-white p-10 flex flex-col"
+          >
+            <div className="flex justify-between items-center mb-20">
+              <div className="flex flex-col">
+                <span className="text-xl font-black tracking-tighter text-black leading-none uppercase">NINES<span className="text-accent">RENTALS</span></span>
+                <span className="text-[7px] tracking-[0.4em] text-black/50 uppercase font-black text-right">Luxury & Exotic</span>
+              </div>
+              <button onClick={() => setShowMobileMenu(false)} className="p-2 border border-black/10 rounded-full">
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-8">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    setShowMobileMenu(false);
+                    if (link.type === "page") {
+                      e.preventDefault();
+                      setShowInventory(true);
+                    }
+                  }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * i }}
+                  className="text-4xl font-bold uppercase tracking-tighter text-black"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
+
+            <div className="mt-auto pt-10 border-t border-black/5">
+              <div className="flex flex-col gap-4">
+                <a href="tel:7865098435" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-black/40"><Phone size={14} /> +1 (786) 509-8435</a>
+                <a href="https://instagram.com/NinesRentals" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-black/40">@NinesRentals</a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Content */}
       <motion.div 
@@ -235,35 +287,35 @@ export default function App() {
             {[
               {
                 title: "Professional Photography",
-                price: "$395",
+                price: "Inquire",
                 desc: "Transform your exotic car experience into a work of art with our exclusive photography package.",
                 features: ["10 professionally edited pictures", "Desired location within 15 miles", "1 hour session"],
                 image: "https://static.wixstatic.com/media/dfb3c4_c0a36ab317df453aa2e9e293710567a1~mv2.jpg/v1/fill/w_614,h_460,fp_0.46_0.67,q_90,enc_avif,quality_auto/dfb3c4_c0a36ab317df453aa2e9e293710567a1~mv2.jpg"
               },
               {
                 title: "Professional Filming",
-                price: "$595",
+                price: "Inquire",
                 desc: "Capture every thrilling moment of your vehicle in action, highlighting its power and design.",
                 features: ["2 30 second edited films", "Desired location within 15 miles", "2 hour session"],
                 image: "https://static.wixstatic.com/media/dfb3c4_0fd7d8ad30e046cd8149d8b77cd62c79~mv2.jpeg/v1/fill/w_590,h_514,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Roller%20Pics_JPEG.jpeg"
               },
               {
                 title: "Romantic Package",
-                price: "From $195",
+                price: "Inquire",
                 desc: "Date night with a touch of class. Includes permanent lasting silk roses and designer paper.",
-                features: ["25 to 100 rose bouquets", "Designer paper choice", "Starting at $195"],
+                features: ["25 to 100 rose bouquets", "Designer paper choice", "Custom arrangement"],
                 image: "https://static.wixstatic.com/media/dfb3c4_7a86fdd0aff84dcb8f313194dae7f4cd~mv2.jpg/v1/fill/w_590,h_514,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/46-DSC05487_edited.jpg"
               },
               {
                 title: "Personal Chauffeur",
-                price: "From $95/hr",
+                price: "Inquire",
                 desc: "Experience convenience, luxury, and discretion. Available for all vehicles in our fleet.",
                 features: ["3 Hour Minimum", "Executive transportation", "Custom routes"],
                 image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800"
               },
               {
                 title: "Wedding Service",
-                price: "Call for Pricing",
+                price: "Inquire",
                 desc: "Celebrate your wedding or honeymoon with sophistication and elite style.",
                 features: ["Customizable wedding bouquet", "Honeymoon transport", "Sophisticated service"],
                 image: "https://static.wixstatic.com/media/dfb3c4_b816f5c7099f455b9248cedc8bca48c5~mv2.jpg/v1/fill/w_590,h_514,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/63-DSC05550.jpg"
@@ -301,8 +353,13 @@ export default function App() {
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full py-4 border border-black/10 text-black text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all">
-                    Book Now
+                  <button 
+                    onClick={() => {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full py-4 border border-black/10 text-black text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all"
+                  >
+                    Inquire Now
                   </button>
                 </div>
               </motion.div>
@@ -562,13 +619,13 @@ export default function App() {
       {/* Reviews / Experience */}
       <section className="relative z-20 py-32 bg-black/[0.02] backdrop-blur-xs">
         <div className="max-w-[1400px] mx-auto px-10 md:px-16 text-center">
-            <h2 className="text-6xl md:text-9xl font-black text-black/[0.05] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none uppercase">Drive</h2>
+            <h2 className="text-6xl md:text-9xl font-black text-black/[0.05] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none uppercase">Grace</h2>
             <div className="relative z-10 max-w-2xl mx-auto">
-                <p className="text-2xl md:text-3xl font-serif text-black leading-relaxed italic mb-8">"The only company I trust for my Miami stays. The Lamborghini was pristine, and the delivery was flawlessly handled at MIA."</p>
+                <p className="text-2xl md:text-3xl font-serif text-black leading-relaxed italic mb-8">“God is Good all The time .. All The time god is good 🙏 “</p>
                 <div className="flex flex-col items-center text-black">
                     <div className="w-12 h-px bg-accent mb-4" />
-                    <span className="text-sm font-bold uppercase tracking-[0.3em]">Julian V.</span>
-                    <span className="text-[10px] text-black/30 tracking-widest uppercase mt-1">Founding Member</span>
+                    <span className="text-sm font-bold uppercase tracking-[0.3em]">NinesRentals</span>
+                    <span className="text-[10px] text-black/30 tracking-widest uppercase mt-1">Faith First</span>
                 </div>
             </div>
         </div>
