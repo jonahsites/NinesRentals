@@ -241,7 +241,7 @@ export default function App() {
               <img 
                 src="https://photos.smugmug.com/Saucy-Rentals-Car-Inventory-/Saucy-Rentals-Extra/Mercedes-Benz-s580-Maybach/i-ncQR6Cc/0/KLcJCfBVFKFJw4WMXx7Cg9VmtR7vsNtw9qChvBqSG/X2/R4wNCzt-0%2521largestimage%253FMaxSiz-X2.jpg" 
                 alt="Elite Collection Roller" 
-                className="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
+                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-linear-to-t from-luxury-black/60 to-transparent" />
@@ -377,7 +377,7 @@ export default function App() {
               <img 
                 src="https://photos.smugmug.com/Saucy-Rentals-Car-Inventory-/Saucy-Rentals-Extra/Corvette-C8-ERAY/i-VQPCwzd/0/KQGQsNKcPn3xCtgJLsVtN38snRnvVt6Nh6zxxfbtt/L/IMG_2922-L.jpg" 
                 alt="NinesRentals Passion" 
-                className="w-full h-full object-cover grayscale opacity-80 group-hover:scale-110 group-hover:grayscale-0 transition-all duration-1000"
+                className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-linear-to-tr from-white via-transparent to-transparent opacity-40" />
