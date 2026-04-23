@@ -545,14 +545,31 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
     >
       {/* Image */}
       <div className="aspect-square overflow-hidden relative">
-        <motion.img 
-          layoutId={`car-image-${car.id}`}
-          src={car.image} 
-          alt={car.name} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 border border-black/10 rounded-sm">
+        {car.slideshowUrl ? (
+          <div className="w-full h-full relative pointer-events-none">
+            <iframe 
+              src={car.slideshowUrl
+                .replace(/speed=\d+/, 'speed=1000000') 
+                .replace(/transitionSpeed=\d+/, 'transitionSpeed=0')
+                .replace(/randomize=\d+/, 'randomize=0')
+              } 
+              className="w-full h-full border-none"
+              scrolling="no"
+              title={`${car.name} static preview`}
+            />
+            {/* Transparent overlay to catch group-hover effects and block iframe interaction */}
+            <div className="absolute inset-0 z-10 bg-transparent" />
+          </div>
+        ) : (
+          <motion.img 
+            layoutId={`car-image-${car.id}`}
+            src={car.image} 
+            alt={car.name} 
+            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+            referrerPolicy="no-referrer"
+          />
+        )}
+        <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 border border-black/10 rounded-sm z-20">
           <span className="text-[9px] font-bold text-accent uppercase tracking-widest">Inquire</span>
         </div>
       </div>
