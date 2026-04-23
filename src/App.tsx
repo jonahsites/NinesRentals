@@ -236,15 +236,20 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="w-full h-[85%] bg-linear-to-br from-white/10 to-transparent border border-white/10 rounded-sm relative overflow-hidden group"
+              className="w-full h-[85%] bg-black/5 border border-black/10 rounded-sm relative overflow-hidden group"
             >
-              <img 
-                src="https://photos.smugmug.com/Saucy-Rentals-Car-Inventory-/Saucy-Rentals-Extra/Mercedes-Benz-s580-Maybach/i-ncQR6Cc/0/KLcJCfBVFKFJw4WMXx7Cg9VmtR7vsNtw9qChvBqSG/X2/R4wNCzt-0%2521largestimage%253FMaxSiz-X2.jpg" 
-                alt="Elite Collection Roller" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-luxury-black/60 to-transparent" />
+              <div className="w-full h-full relative">
+                <iframe 
+                  src="https://legacyexotics.smugmug.com/frame/slideshow?key=786XW2&speed=1&transition=fade&autoStart=0&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1" 
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="no" 
+                  scrolling="no"
+                  className="w-full h-full"
+                  title="Elite Collection Slideshow"
+                />
+              </div>
+              <div className="absolute inset-0 bg-linear-to-t from-luxury-black/30 to-transparent pointer-events-none" />
               
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <span className="font-serif italic text-white/5 text-4xl tracking-[0.1em] uppercase group-hover:opacity-0 transition-opacity">

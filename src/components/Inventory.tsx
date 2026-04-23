@@ -544,31 +544,49 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
   // Component for Car Card to avoid repetition
-  const CarCard = ({ car, onClick }: { car: Car, onClick: () => void }) => (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.4 }}
-      onClick={onClick}
-      className="group relative bg-white border border-black/5 hover:border-accent/20 transition-all overflow-hidden cursor-pointer h-full flex flex-col"
-    >
-      {/* Image */}
-      <div className="aspect-square overflow-hidden relative">
-        <motion.img 
-          layoutId={`car-image-${car.id}`}
-          src={car.image} 
-          alt={car.name} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 font-sans grayscale group-hover:grayscale-0"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 border border-black/10 rounded-sm z-20">
-          <span className="text-[9px] font-bold text-accent uppercase tracking-widest">Inquire</span>
+  const CarCard = ({ car, onClick }: { car: Car, onClick: () => void, key?: any }) => {
+    return (
+      <motion.div
+        layout
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.4 }}
+        onClick={onClick}
+        className="group relative bg-white border border-black/5 hover:border-accent/20 transition-all overflow-hidden cursor-pointer h-full flex flex-col"
+      >
+        {/* Image / Slideshow */}
+        <div className="aspect-square overflow-hidden relative bg-black/5">
+          {car.slideshowUrl ? (
+            <div className="absolute inset-0 w-full h-full transition-all duration-700">
+              <iframe 
+                src={car.slideshowUrl.replace('autoStart=1', 'autoStart=0')} 
+                width="100%" 
+                height="100%" 
+                frameBorder="no" 
+                scrolling="no"
+                className="w-full h-full pointer-events-none"
+                title={`${car.name} Slideshow`}
+                loading="lazy"
+              />
+              {/* Overlay to ensure clicks register on the card, not the iframe */}
+              <div className="absolute inset-0 z-10 cursor-pointer" />
+            </div>
+          ) : (
+            <motion.img 
+              layoutId={`car-image-${car.id}`}
+              src={car.image} 
+              alt={car.name} 
+              className="w-full h-full object-cover transition-all duration-700 font-sans"
+              referrerPolicy="no-referrer"
+            />
+          )}
+          <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 border border-black/10 rounded-sm z-20 pointer-events-none">
+            <span className="text-[9px] font-bold text-accent uppercase tracking-widest">Inquire</span>
+          </div>
         </div>
-      </div>
 
-      {/* Info */}
+        {/* Info */}
       <div className="p-8 flex-1 flex flex-col">
         <div className="text-[9px] uppercase tracking-widest text-black/30 mb-2">{car.category}</div>
         <h3 className="text-xl font-bold uppercase tracking-tighter mb-6 group-hover:text-accent transition-colors text-black leading-tight line-clamp-2">{car.name}</h3>
@@ -591,7 +609,8 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
         <ArrowUpRight size={18} />
       </button>
     </motion.div>
-  );
+    );
+  };
   
   // Booking States
   const [user, setUser] = useState<User | null>(null);
