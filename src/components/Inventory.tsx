@@ -33,7 +33,7 @@ const cars: Car[] = [
     speed: "190 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-VQPCwzd/0/L/IMG_2922-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=6ffMMj&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=6ffMMj&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 2, 
@@ -44,7 +44,7 @@ const cars: Car[] = [
     speed: "190 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-FbwDzt/0/L/UrusStars-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=FbwDzt&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=FbwDzt&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 3, 
@@ -55,7 +55,7 @@ const cars: Car[] = [
     speed: "194 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-NNdMv5/0/L/C8-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=NNdMv5&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=NNdMv5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 4, 
@@ -66,7 +66,7 @@ const cars: Car[] = [
     speed: "194 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-HJj29q/0/L/CorvetteC8-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=HJj29q&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=HJj29q&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 5, 
@@ -77,7 +77,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-gCT7Zn/0/L/AMG-C43-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=gCT7Zn&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=gCT7Zn&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 6, 
@@ -86,9 +86,9 @@ const cars: Car[] = [
     price: 595, 
     hp: 362, 
     speed: "155 MPH", 
-    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-29K4mq/0/L/AMG-GT43-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=29K4mq&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=29K4mq&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 7, 
@@ -97,9 +97,9 @@ const cars: Car[] = [
     price: 795, 
     hp: 603, 
     speed: "155 MPH", 
-    image: "https://images.unsplash.com/photo-1511119253452-9d33267d2685?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-B7GV8R/0/L/GLS63-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=B7GV8R&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=B7GV8R&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 8, 
@@ -108,9 +108,9 @@ const cars: Car[] = [
     price: 295, 
     hp: 255, 
     speed: "130 MPH", 
-    image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-wfngxL/0/L/C300-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=wfngxL&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=wfngxL&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 9, 
@@ -121,7 +121,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-wgkFvz/0/L/BMW330-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=wgkFvz&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=wgkFvz&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 10, 
@@ -132,7 +132,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-DVjswC/0/L/AudiA7-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=DVjswC&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=DVjswC&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 11, 
@@ -143,7 +143,7 @@ const cars: Car[] = [
     speed: "145 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-v8Xs8M/0/L/G70-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=v8Xs8M&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=v8Xs8M&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 12, 
@@ -154,7 +154,7 @@ const cars: Car[] = [
     speed: "140 MPH", 
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-7HCrm5/0/L/Tesla3-L.jpg",
     requiresInsurance: false,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=7HCrm5&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=7HCrm5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
 
   // INSURANCE REQUIRED
@@ -167,7 +167,7 @@ const cars: Car[] = [
     speed: "190 MPH", 
     image: "https://photos.smugmug.com/i-38GRVK/0/L/UrusSilver-L.jpg",
     requiresInsurance: true,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=38GRVK&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=38GRVK&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 102, 
@@ -178,7 +178,7 @@ const cars: Car[] = [
     speed: "190 MPH", 
     image: "https://photos.smugmug.com/i-KJdbk2/0/L/UrusWidebody-L.jpg",
     requiresInsurance: true,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=KJdbk2&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=KJdbk2&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 103, 
@@ -189,7 +189,7 @@ const cars: Car[] = [
     speed: "190 MPH", 
     image: "https://photos.smugmug.com/i-qrgxZ7/0/L/UrusBlack-L.jpg",
     requiresInsurance: true,
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=qrgxZ7&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=qrgxZ7&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 104, 
@@ -200,7 +200,7 @@ const cars: Car[] = [
     speed: "204 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-7vbk6x/0/L/570s-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=7vbk6x&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=7vbk6x&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 105, 
@@ -211,7 +211,7 @@ const cars: Car[] = [
     speed: "188 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-zk2nSn/0/L/911Targa-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=zk2nSn&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=zk2nSn&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 106, 
@@ -222,7 +222,7 @@ const cars: Car[] = [
     speed: "182 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-5RBDS9/0/L/911Carrera-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=5RBDS9&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=5RBDS9&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 107, 
@@ -233,7 +233,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-B9pz2D/0/L/GLS600-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=B9pz2D&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=B9pz2D&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 108, 
@@ -244,7 +244,7 @@ const cars: Car[] = [
     speed: "183 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-JpPrZs/0/L/SL55-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=JpPrZs&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=JpPrZs&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 109, 
@@ -255,7 +255,7 @@ const cars: Car[] = [
     speed: "149 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-KfcqhV/0/L/G63-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=KfcqhV&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=KfcqhV&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 110, 
@@ -266,7 +266,7 @@ const cars: Car[] = [
     speed: "130 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-kbN7N5/0/L/CyberBeast-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=kbN7N5&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=kbN7N5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 111, 
@@ -277,7 +277,7 @@ const cars: Car[] = [
     speed: "130 MPH", 
     requiresInsurance: true,
     image: "https://photos.smugmug.com/i-NVXFjs/0/L/RangeRover-L.jpg",
-    slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=NVXFjs&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=NVXFjs&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 112, 
@@ -288,7 +288,7 @@ const cars: Car[] = [
     speed: "261 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-2pXFr5/0/L/Chiron-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=2pXFr5&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=2pXFr5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 113, 
@@ -387,7 +387,7 @@ const cars: Car[] = [
     hp: 550, 
     speed: "155 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1620127252536-03fc435eb68d?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-HbsdfS/0/L/GLS600-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=HbsdfS&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -398,7 +398,7 @@ const cars: Car[] = [
     hp: 496, 
     speed: "155 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-786XW2/0/L/S580-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=786XW2&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -409,7 +409,7 @@ const cars: Car[] = [
     hp: 621, 
     speed: "155 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-f6szxj/0/L/S680-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=f6szxj&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -431,7 +431,7 @@ const cars: Car[] = [
     hp: 563, 
     speed: "155 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1631215233157-5b865668d90f?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-kgRNbg/0/L/TiffanyCullinan-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=kgRNbg&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -442,7 +442,7 @@ const cars: Car[] = [
     hp: 593, 
     speed: "155 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1631215233157-5b865668d90f?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-9WqBTK/0/L/RRDawn-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=9WqBTK&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -453,7 +453,7 @@ const cars: Car[] = [
     hp: 577, 
     speed: "149 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1520050206274-a1af4463404b?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-nXpxSn/0/L/WidebodyG63-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=nXpxSn&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -464,7 +464,7 @@ const cars: Car[] = [
     hp: 577, 
     speed: "149 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1520050206274-a1af4463404b?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-pWfdTS/0/L/G63Whiteout-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=pWfdTS&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -475,7 +475,7 @@ const cars: Car[] = [
     hp: 577, 
     speed: "149 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1520050206274-a1af4463404b?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-H29Fnr/0/L/G63TwoTone-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=H29Fnr&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -486,7 +486,7 @@ const cars: Car[] = [
     hp: 631, 
     speed: "193 MPH", 
     requiresInsurance: true, 
-    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80&w=800",
+    image: "https://photos.smugmug.com/i-fP7PHD/0/L/HuracanSTO-L.jpg",
     slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=fP7PHD&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
   },
   { 
@@ -546,26 +546,27 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
       {/* Image */}
       <div className="aspect-square overflow-hidden relative">
         {car.slideshowUrl ? (
-          <div className="w-full h-full relative pointer-events-none">
+          <div className="w-full h-full relative bg-black/5">
             <iframe 
-              src={car.slideshowUrl
-                .replace(/speed=\d+/, 'speed=1000000') 
-                .replace(/transitionSpeed=\d+/, 'transitionSpeed=0')
-                .replace(/randomize=\d+/, 'randomize=0')
-              } 
-              className="w-full h-full border-none"
+              src={car.slideshowUrl} 
+              width="100%"
+              height="100%"
+              className="w-full h-full border-none pointer-events-none"
               scrolling="no"
-              title={`${car.name} static preview`}
+              title={`${car.name} preview`}
+              allow="autoplay; fullscreen"
+              loading="lazy"
+              referrerPolicy="no-referrer"
             />
             {/* Transparent overlay to catch group-hover effects and block iframe interaction */}
-            <div className="absolute inset-0 z-10 bg-transparent" />
+            <div className="absolute inset-0 z-10 bg-transparent cursor-pointer" />
           </div>
         ) : (
           <motion.img 
             layoutId={`car-image-${car.id}`}
             src={car.image} 
             alt={car.name} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 font-sans"
             referrerPolicy="no-referrer"
           />
         )}
