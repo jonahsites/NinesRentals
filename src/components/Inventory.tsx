@@ -299,7 +299,7 @@ const cars: Car[] = [
     speed: "212 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-ZhdhXm/0/L/720s-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=ZhdhXm&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=ZhdhXm&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 114, 
@@ -310,7 +310,7 @@ const cars: Car[] = [
     speed: "190 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-kTtrkd/0/L/Performante-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=kTtrkd&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=kTtrkd&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 115, 
@@ -322,7 +322,7 @@ const cars: Car[] = [
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-StRbS4/0/L/Keyrus-L.jpg",
     description: "The Keyvany Keyrus is a heavily modified, ultra-exclusive version of the Lamborghini Urus, created by the German tuner Keyvany. It features comprehensive carbon fiber widebody aerodynamic enhancements, a significantly boosted engine (often 820–1000+ HP), bespoke luxury interiors, and custom 24-inch alloy wheels.",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=StRbS4&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=StRbS4&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 116, 
@@ -333,7 +333,7 @@ const cars: Car[] = [
     speed: "202 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-4qvJMX/0/L/HuracanEVO-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=4qvJMX&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=4qvJMX&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 117, 
@@ -344,7 +344,7 @@ const cars: Car[] = [
     speed: "217 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-JXvB3D/0/L/AventadorS-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=JXvB3D&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=JXvB3D&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 118, 
@@ -355,7 +355,7 @@ const cars: Car[] = [
     speed: "217 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-6fRtcC/0/L/SVJ-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=6fRtcC&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=6fRtcC&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 119, 
@@ -366,7 +366,7 @@ const cars: Car[] = [
     speed: "193 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-5brpZh/0/L/Purosangue-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=5brpZh&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=5brpZh&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 120, 
@@ -377,7 +377,7 @@ const cars: Car[] = [
     speed: "205 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-d9jWgh/0/L/488Spider-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=d9jWgh&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=d9jWgh&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 121, 
@@ -388,7 +388,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-HbsdfS/0/L/GLS600-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=HbsdfS&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=HbsdfS&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 122, 
@@ -399,7 +399,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-786XW2/0/L/S580-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=786XW2&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=786XW2&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 123, 
@@ -410,7 +410,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-f6szxj/0/L/S680-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=f6szxj&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=f6szxj&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 124, 
@@ -421,7 +421,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-pg3f27/0/L/Cullinan-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=pg3f27&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=pg3f27&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 125, 
@@ -432,7 +432,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-kgRNbg/0/L/TiffanyCullinan-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=kgRNbg&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=kgRNbg&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 126, 
@@ -443,7 +443,7 @@ const cars: Car[] = [
     speed: "155 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-9WqBTK/0/L/RRDawn-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=9WqBTK&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=9WqBTK&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 127, 
@@ -454,7 +454,7 @@ const cars: Car[] = [
     speed: "149 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-nXpxSn/0/L/WidebodyG63-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=nXpxSn&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=nXpxSn&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 128, 
@@ -465,7 +465,7 @@ const cars: Car[] = [
     speed: "149 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-pWfdTS/0/L/G63Whiteout-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=pWfdTS&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=pWfdTS&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 129, 
@@ -476,7 +476,7 @@ const cars: Car[] = [
     speed: "149 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-H29Fnr/0/L/G63TwoTone-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=H29Fnr&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=H29Fnr&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 130, 
@@ -487,7 +487,7 @@ const cars: Car[] = [
     speed: "193 MPH", 
     requiresInsurance: true, 
     image: "https://photos.smugmug.com/i-fP7PHD/0/L/HuracanSTO-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=fP7PHD&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=fP7PHD&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 131, 
@@ -497,11 +497,22 @@ const cars: Car[] = [
     hp: 670, 
     speed: "189 MPH", 
     requiresInsurance: true, 
-    image: "https://photos.smugmug.com/i-hQ7m9c/0/L/Z06-L.jpg",
-    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=hQ7m9c&speed=2&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=2"
+    image: "https://photos.smugmug.com/i-4hndMv/0/L/C8Z06-L.jpg",
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=4hndMv&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
     id: 132, 
+    name: "Cadillac Escalade V", 
+    category: "Cadillac", 
+    price: 995, 
+    hp: 682, 
+    speed: "125 MPH", 
+    requiresInsurance: true, 
+    image: "https://photos.smugmug.com/i-9nSnzk/0/L/EscaladeV-L.jpg",
+    slideshowUrl: "https://legacyexotics.smugmug.com/frame/slideshow?key=9nSnzk&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
+  },
+  { 
+    id: 133, 
     name: "BMW M340i", 
     category: "BMW", 
     price: 495, 
@@ -511,7 +522,7 @@ const cars: Car[] = [
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=800" 
   },
   { 
-    id: 133, 
+    id: 134, 
     name: "Porsche 911 Cabriolet", 
     category: "Porsche", 
     price: 1095, 
@@ -545,31 +556,13 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
     >
       {/* Image */}
       <div className="aspect-square overflow-hidden relative">
-        {car.slideshowUrl ? (
-          <div className="w-full h-full relative bg-black/5">
-            <iframe 
-              src={car.slideshowUrl} 
-              width="100%"
-              height="100%"
-              className="w-full h-full border-none pointer-events-none"
-              scrolling="no"
-              title={`${car.name} preview`}
-              allow="autoplay; fullscreen"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-            {/* Transparent overlay to catch group-hover effects and block iframe interaction */}
-            <div className="absolute inset-0 z-10 bg-transparent cursor-pointer" />
-          </div>
-        ) : (
-          <motion.img 
-            layoutId={`car-image-${car.id}`}
-            src={car.image} 
-            alt={car.name} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 font-sans"
-            referrerPolicy="no-referrer"
-          />
-        )}
+        <motion.img 
+          layoutId={`car-image-${car.id}`}
+          src={car.image} 
+          alt={car.name} 
+          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 font-sans grayscale group-hover:grayscale-0"
+          referrerPolicy="no-referrer"
+        />
         <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 border border-black/10 rounded-sm z-20">
           <span className="text-[9px] font-bold text-accent uppercase tracking-widest">Inquire</span>
         </div>
