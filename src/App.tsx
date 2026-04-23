@@ -20,7 +20,7 @@ const faqItems = [
   { q: "Can I add an additional driver to my rental?", a: "Yes you can add an additional driver to your trip." },
   { q: "What if my insurance deductible is over $2,500?", a: "If your deductible is over $2500 it is okay we can take care of you." },
   { q: "Do you have any extra hidden fees?", a: "No extra hidden fees!" },
-  { q: "What do I pay upfront?", a: "Daily rate & deposit (paid in person , Trust is #1)." },
+  { q: "What do I pay upfront?", a: "Nothing Upfront! Pay in person. Trust is #1 at NinesRental." },
   { q: "Do you offer delivery service?", a: "Delivery service is optional and can be done upon request." },
   { q: "How many miles are included with my rental?", a: "Miles depend on which car you would like, just inquire down below and we’ll help you out!" },
   { q: "What is your security deposit policy?", a: "It is held to cover any damages, tickets, or violations. The deposit is refunded after return and inspection, if the vehicle is in the same condition deposit is refunded immediately." },
