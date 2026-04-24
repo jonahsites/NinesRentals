@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowUpRight, Search, Filter, Calendar, Info, CheckCircle2 } from 'lucide-react';
-import { db, auth, signInWithGoogle } from '../lib/firebase';
-import { collection, addDoc, query, where, onSnapshot, serverTimestamp, Timestamp } from 'firebase/firestore';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { supabase, signInWithGoogle } from '../lib/supabase';
 import { format, isWithinInterval, parseISO, isAfter, isBefore, startOfDay } from 'date-fns';
+import { User } from '@supabase/supabase-js';
 
 const categories = ["All", "Ferrari", "Lamborghini", "Rolls Royce", "Porsche", "McLaren", "Bugatti", "Corvette", "Mercedes", "Cadillac"];
 
@@ -155,6 +154,28 @@ const cars: Car[] = [
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-7HCrm5/0/L/Tesla3-L.jpg",
     requiresInsurance: false,
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=7HCrm5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
+  },
+  { 
+    id: 13, 
+    name: "2017 McLaren 570s Spider", 
+    category: "McLaren", 
+    price: 895, 
+    hp: 562, 
+    speed: "204 MPH", 
+    image: "https://images.unsplash.com/photo-1544636331-e2685920319a?auto=format&fit=crop&q=80&w=800",
+    description: "Black on black with a striking red interior. This 2017 McLaren 570s Spider combines raw performance with open-top luxury.",
+    requiresInsurance: false
+  },
+  { 
+    id: 14, 
+    name: "2020 Lamborghini Urus (White Panda with Stars)", 
+    category: "Lamborghini", 
+    price: 1395, 
+    hp: 650, 
+    speed: "190 MPH", 
+    image: "https://images.unsplash.com/photo-1549399542-7cd3f0ed799d?auto=format&fit=crop&q=80&w=800",
+    description: "White panda spec with a custom starlight headliner. The ultimate super SUV experience.",
+    requiresInsurance: false
   },
 
   // INSURANCE REQUIRED
@@ -616,39 +637,32 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
   const [user, setUser] = useState<User | null>(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [existingBookings, setExistingBookings] = useState<any[]>([]);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [bookingError, setBookingError] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   // Auth Listener
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => setUser(u));
-    return () => unsub();
-  }, []);
-
-  // Fetch Bookings for Selected Car - Only if user is signed in
-  useEffect(() => {
-    if (!selectedCar || !user) {
-      setExistingBookings([]);
-      return;
-    }
-
-    const q = query(
-      collection(db, 'bookings'),
-      where('carId', '==', selectedCar.id),
-      where('status', 'in', ['pending', 'confirmed'])
-    );
-
-    const unsub = onSnapshot(q, (snapshot) => {
-      const bookings = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setExistingBookings(bookings);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        setUserName(session.user.user_metadata?.full_name || "");
+        setUserEmail(session.user.email || "");
+      }
     });
 
-    return () => unsub();
-  }, [selectedCar]);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        setUserName(session.user.user_metadata?.full_name || "");
+        setUserEmail(session.user.email || "");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Reset booking form
   useEffect(() => {
@@ -656,50 +670,21 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
       setActiveImage(selectedCar.image);
       setStartDate("");
       setEndDate("");
+      setPhone("");
       setBookingStatus('idle');
       setBookingError("");
+      if (!user) {
+        setUserName("");
+        setUserEmail("");
+      }
     } else {
       setActiveImage(null);
     }
-  }, [selectedCar]);
-
-  const checkAvailability = () => {
-    if (!startDate || !endDate) return true;
-    const start = parseISO(startDate);
-    const end = parseISO(endDate);
-
-    if (isBefore(end, start)) return false;
-    if (isBefore(start, startOfDay(new Date()))) return false;
-
-    // Check overlaps
-    for (const booking of existingBookings) {
-      const bStart = parseISO(booking.startDate);
-      const bEnd = parseISO(booking.endDate);
-
-      const overlap = 
-        isWithinInterval(start, { start: bStart, end: bEnd }) ||
-        isWithinInterval(end, { start: bStart, end: bEnd }) ||
-        isWithinInterval(bStart, { start, end }) ||
-        isWithinInterval(bEnd, { start, end });
-      
-      if (overlap) return false;
-    }
-    return true;
-  };
+  }, [selectedCar, user]);
 
   const handleBooking = async () => {
-    if (!user) {
-      await signInWithGoogle();
-      return;
-    }
-
-    if (!startDate || !endDate) {
-      setBookingError("Please select both start and end dates.");
-      return;
-    }
-
-    if (!checkAvailability()) {
-      setBookingError("Selected dates are already booked. Please choose other dates.");
+    if (!startDate || !phone || !userName || !userEmail) {
+      setBookingError("Please fill in Name, Email, Phone, and a Date.");
       return;
     }
 
@@ -707,16 +692,19 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
     setBookingError("");
 
     try {
-      await addDoc(collection(db, 'bookings'), {
-        carId: selectedCar?.id,
-        startDate,
-        endDate,
-        userId: user.uid,
-        userEmail: user.email,
-        status: 'pending',
-        createdAt: serverTimestamp(),
-        totalPrice: selectedCar ? selectedCar.price * (Math.max(1, Math.round((parseISO(endDate).getTime() - parseISO(startDate).getTime()) / (1000 * 60 * 60 * 24)))) : 0
-      });
+      // Insert into Supabase according to the user's exact schema
+      const { error: supabaseError } = await supabase
+        .from('bookings')
+        .insert([{
+          name: `${userName} - ${selectedCar?.name}`,
+          email: userEmail,
+          phone: phone,
+          booking_date: startDate,
+          booking_time: "10:00 AM" // Default pickup time
+        }]);
+
+      if (supabaseError) throw supabaseError;
+
       setBookingStatus('success');
     } catch (err) {
       console.error(err);
@@ -864,6 +852,39 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
                         </div>
                       ) : (
                         <div className="space-y-6">
+                          <div className="space-y-4">
+                            <div>
+                              <label className="block text-[8px] uppercase tracking-widest font-bold text-black/40 mb-2">Full Name</label>
+                              <input 
+                                type="text" 
+                                placeholder="Your Name"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                className="w-full bg-white border border-black/10 px-4 py-3 text-xs focus:outline-none focus:border-accent"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[8px] uppercase tracking-widest font-bold text-black/40 mb-2">Email Address</label>
+                              <input 
+                                type="email" 
+                                placeholder="Email Address"
+                                value={userEmail}
+                                onChange={(e) => setUserEmail(e.target.value)}
+                                className="w-full bg-white border border-black/10 px-4 py-3 text-xs focus:outline-none focus:border-accent"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[8px] uppercase tracking-widest font-bold text-black/40 mb-2">Phone Number</label>
+                              <input 
+                                type="tel" 
+                                placeholder="786-000-0000"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                className="w-full bg-white border border-black/10 px-4 py-3 text-xs focus:outline-none focus:border-accent"
+                              />
+                            </div>
+                          </div>
+
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <label className="block text-[8px] uppercase tracking-widest font-bold text-black/40 mb-2">Pick-up</label>
@@ -892,25 +913,12 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
                             </div>
                           )}
 
-                          {existingBookings.length > 0 && (
-                            <div className="bg-accent/5 p-4 border border-accent/10">
-                              <p className="text-[8px] font-bold uppercase tracking-widest text-accent mb-2">Note: This car is already booked on:</p>
-                              <div className="flex flex-wrap gap-2">
-                                {existingBookings.map((b, i) => (
-                                  <span key={i} className="text-[10px] font-mono text-accent/60 bg-white px-2 py-1 border border-accent/5">
-                                    {format(parseISO(b.startDate), 'MMM dd')} - {format(parseISO(b.endDate), 'MMM dd')}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-
                           <button 
                             onClick={handleBooking}
                             disabled={bookingStatus === 'loading'}
                             className="w-full py-6 bg-accent text-white text-xs font-bold uppercase tracking-[0.3em] hover:bg-accent/90 transition-all shadow-xl shadow-accent/20 disabled:bg-black/20"
                           >
-                            {bookingStatus === 'loading' ? 'Processing...' : user ? 'Confirm Rental' : 'Sign in to Book'}
+                            {bookingStatus === 'loading' ? 'Processing...' : 'Confirm Rental'}
                           </button>
                         </div>
                       )}
