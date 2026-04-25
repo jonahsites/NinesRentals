@@ -5,7 +5,7 @@ import { supabase, signInWithGoogle } from '../lib/supabase';
 import { format, isWithinInterval, parseISO, isAfter, isBefore, startOfDay } from 'date-fns';
 import { User } from '@supabase/supabase-js';
 
-const categories = ["All", "Ferrari", "Lamborghini", "Rolls Royce", "Porsche", "McLaren", "Bugatti", "Corvette", "Mercedes", "Cadillac"];
+const categories = ["All", "Ferrari", "Lamborghini", "Rolls Royce", "Porsche", "McLaren", "Bugatti", "Corvette", "Mercedes", "Cadillac", "BMW", "Chevy", "Audi", "Genesis", "Tesla", "Range Rover"];
 
 interface Car {
   id: number;
@@ -22,9 +22,240 @@ interface Car {
 }
 
 const cars: Car[] = [
-  // NO INSURANCE REQUIRED
+  // NO INSURANCE REQUIRED (RENTAL ONLY)
   { 
     id: 1, 
+    name: "2024 Lamborghini Huracán EVO Spyder", 
+    category: "Lamborghini", 
+    price: 1995, 
+    hp: 640, 
+    speed: "202 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AAmoaFKvhvoL9X6IHD6zQ_s/2024%20Lamborghini%20huracan%20EVO%20Spyder%20Mantis%20Green-Orange%20Int/Photo%20Mar%2011%202026%2C%2011%2027%2021%20AM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Experience absolute performance. The Huracán EVO Spyder features the finest of Italian design and mechanical engineering in a striking Mantis Green.",
+    requiresInsurance: false
+  },
+  { 
+    id: 2, 
+    name: "2026 Lamborghini Urus SE", 
+    category: "Lamborghini", 
+    price: 2195, 
+    hp: 800, 
+    speed: "194 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ABFdIcI5JdUCMy7WOGZlWU8/2026%20Lamborghini%20Urus%20SE%20Orange%20On%20Orange-black%20Int/Photo%20Mar%2011%202026%2C%2012%2005%2044%20PM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The next generation of the super SUV. Hybrid power meets uncompromising performance.",
+    requiresInsurance: false
+  },
+  { 
+    id: 3, 
+    name: "2024 Rolls-Royce Cullinan (Black/Orange)", 
+    category: "Rolls Royce", 
+    price: 2195, 
+    hp: 563, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AAdNomc5WOuDaGloT3A3X1M/2024%20Rolls-Royce%20Cullinan%20Black%20On%20Orange%20With%20Stars/Photo%20Mar%2011%202026%2C%2011%2036%2022%20AM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Luxury without limits. Features a custom starlight headliner and a vibrant orange interior.",
+    requiresInsurance: false
+  },
+  { 
+    id: 4, 
+    name: "2025 Rolls-Royce Spectre", 
+    category: "Rolls Royce", 
+    price: 2495, 
+    hp: 577, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AO_qU1UsIk58VkiuNNKLoAY/2025%20Rolls-Royce%20spectre%20Blue%20On%20Two%20Tome%20White%20Int/Photo%20Mar%2011%202026%2C%2012%2004%2037%20PM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The first ultra-luxury electric super coupé. A spiritual successor to the Phantom Coupé.",
+    requiresInsurance: false
+  },
+  { 
+    id: 5, 
+    name: "2024 Lamborghini Urus S (Red/Red)", 
+    category: "Lamborghini", 
+    price: 1895, 
+    hp: 657, 
+    speed: "190 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AKcq1XtuKRq9YmXzTmNlUmM/2024%20Lamborghini%20Urus%20S%20Red%20On%20Red%20Two%20Tone%20Int/Photo%20Mar%2011%202026%2C%2012%2002%2003%20PM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Maximum versatility and performance. The Urus S is the perfect evolution of the super SUV.",
+    requiresInsurance: false
+  },
+  { 
+    id: 6, 
+    name: "2025 Maybach GLS 600 (Matte Black)", 
+    category: "Mercedes", 
+    price: 1595, 
+    hp: 550, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AP5hWFencWOpRGux9TIRcv8/2025%20Maybach%20GLS%20600%20matte%20black%20w%20TVs/Photo%20Feb%2016%202026%2C%202%2002%2002%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The ultimate expression of luxury. Features rear entertainment TVs and a stealthy matte black finish.",
+    requiresInsurance: false
+  },
+  { 
+    id: 7, 
+    name: "2021 Maybach GLS 600 (2-Tone)", 
+    category: "Mercedes", 
+    price: 1295, 
+    hp: 550, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AC_IYleHKUybXoBTWNGWjzc/2021%20Maybach%20GLS%20600%202Tone%20Gray-white/Photo%20Mar%2011%202026%2C%2011%2005%2007%20AM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Sophistication in two tones. The Maybach GLS 600 redefines what an SUV can be.",
+    requiresInsurance: false
+  },
+  { 
+    id: 8, 
+    name: "2025 Corvette Z06 (White/Red)", 
+    category: "Corvette", 
+    price: 1395, 
+    hp: 670, 
+    speed: "189 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ALk4tAwvtLhquZAHSjnqNko/2025%20Corvette%20Z06%20white%20on%20red%20buckets/Photo%20Feb%2017%202026%2C%203%2004%2026%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Mid-engine masterpiece. The Z06 features the most powerful naturally aspirated V8.",
+    requiresInsurance: false
+  },
+  { 
+    id: 9, 
+    name: "2024 Mercedes G63 (Copper)", 
+    category: "Mercedes", 
+    price: 1695, 
+    hp: 577, 
+    speed: "137 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ALBj0XmmU8KJfPWjqQF2WB8/2024%20Mercedes%20G63%20Copper%20w%20black%20interior/Photo%20Jan%2029%202026%2C%203%2045%2040%20PM%20%281%29%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Iconic design in a unique copper finish. The G63 remains the king of performance SUVs.",
+    requiresInsurance: false
+  },
+  { 
+    id: 10, 
+    name: "2022 Mercedes G63 AMG (Black/Red)", 
+    category: "Mercedes", 
+    price: 1595, 
+    hp: 577, 
+    speed: "137 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AGTc91ALNQm9HkpU8GJaj-Y/2022%20Mercedes%20benz%20G63%20AMG%20Black%20On%20Red%20Int/Photo%20Mar%2011%202026%2C%2012%2006%2045%20PM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The classic G-Wagon performance. Black exterior with a bold red interior.",
+    requiresInsurance: false
+  },
+  { 
+    id: 11, 
+    name: "2025 Cadillac Escalade ESV (TVs)", 
+    category: "Cadillac", 
+    price: 1395, 
+    hp: 420, 
+    speed: "130 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ADabrG5eqZ0C5NOEqJ6pSV4/2025%20Escalade%20ESV%20w%20TVs/Photo%20Dec%2003%202025%2C%2012%2001%2047%20AM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Fully loaded for the family or the crew. Features rear entertainment screens for every passenger.",
+    requiresInsurance: false
+  },
+  { 
+    id: 12, 
+    name: "2023 Cadillac Escalade V (Panda)", 
+    category: "Cadillac", 
+    price: 1495, 
+    hp: 682, 
+    speed: "150 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ADSdPv8koHQhy4T_pvaJFJE/2023%20Escalade%20V%20panda/Photo%20Sep%2024%202025%2C%203%2028%2013%20PM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The most powerful full-size SUV. Hear the roar of the supercharged V8.",
+    requiresInsurance: false
+  },
+  { 
+    id: 13, 
+    name: "2017 McLaren 570S Spider (Black/Red)", 
+    category: "McLaren", 
+    price: 1195, 
+    hp: 562, 
+    speed: "204 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AEtzH5N4dSteunhZGI94M1Y/2017%20Mclaren%20570s%20black%20on%20black-red%20interior/Photo%20Mar%2008%202026%2C%201%2025%2012%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Raw performance meets open-top luxury. Black exterior with a striking red interior.",
+    requiresInsurance: false
+  },
+  { 
+    id: 14, 
+    name: "2020 Lamborghini Urus (Panda/Stars)", 
+    category: "Lamborghini", 
+    price: 1695, 
+    hp: 650, 
+    speed: "190 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ANIwaoUllmcPJ2hh-R0jUJA/2020%20Lambo%20Urus%20white%20panda%20with%20stars%20%E2%9C%A8/Photo%20Jul%2010%202025%2C%2011%2025%2018%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Custom starlight headliner in a panda spec Urus. Turn heads wherever you go.",
+    requiresInsurance: false
+  },
+  { 
+    id: 15, 
+    name: "2021 Corvette C8 (Midnight Purple)", 
+    category: "Corvette", 
+    price: 1095, 
+    hp: 495, 
+    speed: "194 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AFNfVgGyT8govJCxYK3jiDk/2021%20Corvette%20C8%20Midnight%20purple%20on%20Red%20convertible/Photo%20May%2015%202025%2C%2011%2025%2009%20AM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Striking Midnight Purple exterior with a Red interior. The first mid-engine Corvette convertible.",
+    requiresInsurance: false
+  },
+  { 
+    id: 16, 
+    name: "2022 BMW i7 M60i", 
+    category: "BMW", 
+    price: 995, 
+    hp: 536, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AMjH2EVtbI7uEZr3ja9aHDo/2022%20BMW%20i7%20M60i%20Black%20On%20Black%20Interior/Photo%20Mar%2009%202026%2C%207%2016%2046%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The pinnacle of electric luxury. Experience the future of BMW.",
+    requiresInsurance: false
+  },
+  { 
+    id: 17, 
+    name: "2022 Cadillac Escalade ESV (Stars)", 
+    category: "Cadillac", 
+    price: 1095, 
+    hp: 420, 
+    speed: "130 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ADjmTD5WT-of6BguaY3WSJc/2022%20Cadillac%20Escalade%20ESV%20w%20stars%20%E2%9C%A8/Photo%20Jun%2019%202025%2C%201%2058%2055%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Luxury ESV model with a custom starlight headliner. Ultimate comfort and style.",
+    requiresInsurance: false
+  },
+  { 
+    id: 18, 
+    name: "2022 Maybach S580 (2-Tone)", 
+    category: "Mercedes", 
+    price: 1395, 
+    hp: 496, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AJQLi2F94jAsA_AXd5jpXxw/2022%20Maybach%20S580%202tone%20Blk-Wht%20On%20White%20Int/Photo%20Mar%2011%202026%2C%2011%2011%2051%20AM%20%281%29.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The most luxurious sedan. Black and white exterior with a pristine white interior.",
+    requiresInsurance: false
+  },
+  { 
+    id: 19, 
+    name: "2022 BMW 540i (Stars)", 
+    category: "BMW", 
+    price: 695, 
+    hp: 335, 
+    speed: "155 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/ANHQ4o4srTLiqwVUiEUtUEY/2022%20BMW%205%20series%20540i%20w%20stars/Photo%20Dec%2012%202025%2C%207%2028%2016%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Luxury sedan with a custom starlight headliner. Perfect balance of sport and comfort.",
+    requiresInsurance: false
+  },
+  { 
+    id: 20, 
+    name: "2023 Chevy Tahoe RST", 
+    category: "Chevy", 
+    price: 595, 
+    hp: 355, 
+    speed: "130 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AO9REQ-iiOg51vc23YdXLHM/2023%20Chevy%20Tahoe%20RST/Photo%20Jun%2028%202025%2C%205%2053%2028%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "Sporty and spacious. The Tahoe RST provides power and presence.",
+    requiresInsurance: false
+  },
+  { 
+    id: 21, 
+    name: "2025 Mercedes C63S AMG", 
+    category: "Mercedes", 
+    price: 895, 
+    hp: 671, 
+    speed: "174 MPH", 
+    image: "https://dl.dropboxusercontent.com/scl/fo/f9elxbsia1y8p492nvzxg/AH9FdA3L0MSghDuqcrYYFGc/2025%20Mercedes-Benz%20C63s%20AMG%20white%20on%20black/Photo%20Feb%2007%202026%2C%2010%2031%2036%20PM.jpg?rlkey=1lh7bgh0uoa0v7su37kj5e7yx&raw=1",
+    description: "The next generation of AMG performance. Hybrid power with incredible acceleration.",
+    requiresInsurance: false
+  },
+  { 
+    id: 30, 
     name: "Lamborghini Urus", 
     category: "Lamborghini", 
     price: 1295, 
@@ -35,7 +266,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=6ffMMj&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 2, 
+    id: 31, 
     name: "Urus with stars", 
     category: "Lamborghini", 
     price: 1395, 
@@ -46,7 +277,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=FbwDzt&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 3, 
+    id: 32, 
     name: "Corvette C8 z51 2LT Coupe", 
     category: "Corvette", 
     price: 595, 
@@ -57,7 +288,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=NNdMv5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 4, 
+    id: 33, 
     name: "2026 Corvette C8", 
     category: "Corvette", 
     price: 695, 
@@ -68,7 +299,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=HJj29q&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 5, 
+    id: 34, 
     name: "2023 Mercedes Benz AMG C43", 
     category: "Mercedes", 
     price: 495, 
@@ -79,7 +310,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=gCT7Zn&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 6, 
+    id: 35, 
     name: "2022 Mercedes Benz AMG GT43", 
     category: "Mercedes", 
     price: 595, 
@@ -90,7 +321,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=29K4mq&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 7, 
+    id: 36, 
     name: "Mercedes Benz AMG GLS63", 
     category: "Mercedes", 
     price: 795, 
@@ -101,7 +332,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=B7GV8R&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 8, 
+    id: 37, 
     name: "Mercedes Benz C300", 
     category: "Mercedes", 
     price: 295, 
@@ -112,7 +343,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=wfngxL&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 9, 
+    id: 38, 
     name: "2024 BMW M330i", 
     category: "BMW", 
     price: 395, 
@@ -123,7 +354,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=wgkFvz&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 10, 
+    id: 39, 
     name: "Audi a7 Fully Loaded", 
     category: "Audi", 
     price: 495, 
@@ -134,7 +365,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=DVjswC&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 11, 
+    id: 40, 
     name: "Genesis G70", 
     category: "Genesis", 
     price: 350, 
@@ -145,7 +376,7 @@ const cars: Car[] = [
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=v8Xs8M&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
   },
   { 
-    id: 12, 
+    id: 41, 
     name: "Tesla Model 3", 
     category: "Tesla", 
     price: 195, 
@@ -154,28 +385,6 @@ const cars: Car[] = [
     image: "https://photos.smugmug.com/Saucy-Rentals-Extras/i-7HCrm5/0/L/Tesla3-L.jpg",
     requiresInsurance: false,
     slideshowUrl: "https://saucyrentals.smugmug.com/frame/slideshow?key=7HCrm5&speed=1&transition=fade&autoStart=1&captions=0&navigation=0&playButton=0&randomize=0&transitionSpeed=1"
-  },
-  { 
-    id: 13, 
-    name: "2017 McLaren 570s Spider", 
-    category: "McLaren", 
-    price: 895, 
-    hp: 562, 
-    speed: "204 MPH", 
-    image: "https://images.unsplash.com/photo-1544636331-e2685920319a?auto=format&fit=crop&q=80&w=800",
-    description: "Black on black with a striking red interior. This 2017 McLaren 570s Spider combines raw performance with open-top luxury.",
-    requiresInsurance: false
-  },
-  { 
-    id: 14, 
-    name: "2020 Lamborghini Urus (White Panda with Stars)", 
-    category: "Lamborghini", 
-    price: 1395, 
-    hp: 650, 
-    speed: "190 MPH", 
-    image: "https://images.unsplash.com/photo-1549399542-7cd3f0ed799d?auto=format&fit=crop&q=80&w=800",
-    description: "White panda spec with a custom starlight headliner. The ultimate super SUV experience.",
-    requiresInsurance: false
   },
 
   // INSURANCE REQUIRED
