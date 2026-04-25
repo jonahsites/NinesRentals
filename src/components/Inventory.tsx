@@ -147,7 +147,7 @@ const cars: Car[] = [
   },
   { 
     id: 7, 
-    name: "2021 Maybach GLS 600 (2-Tone)", 
+    name: "2023 Maybach GLS 600 (2-Tone)", 
     category: "Mercedes", 
     price: 1295, 
     hp: 550, 
@@ -209,7 +209,7 @@ const cars: Car[] = [
   },
   { 
     id: 10, 
-    name: "2022 Mercedes G63 AMG (Black/Red)", 
+    name: "2024 Mercedes G63 AMG (Black/Red)", 
     category: "Mercedes", 
     price: 1595, 
     hp: 577, 
@@ -1426,20 +1426,20 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
               All
             </button>
             <button
-              onClick={() => setActiveCategory("No Insurance Required")}
-              className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
-                activeCategory === "No Insurance Required" ? 'bg-accent text-white shadow-lg' : 'bg-black/5 border border-black/10 text-black/40 hover:text-black'
-              }`}
-            >
-              No Insurance Required
-            </button>
-            <button
               onClick={() => setActiveCategory("Insurance Required")}
               className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
                 activeCategory === "Insurance Required" ? 'bg-accent text-white shadow-lg' : 'bg-black/5 border border-black/10 text-black/40 hover:text-black'
               }`}
             >
               Insurance Required
+            </button>
+            <button
+              onClick={() => setActiveCategory("No Insurance Required")}
+              className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
+                activeCategory === "No Insurance Required" ? 'bg-accent text-white shadow-lg' : 'bg-black/5 border border-black/10 text-black/40 hover:text-black'
+              }`}
+            >
+              No Insurance Required
             </button>
           </div>
 
@@ -1457,11 +1457,11 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
 
         {/* Grid Sections */}
         <div className="space-y-24 mb-20">
-          {/* No Insurance Section */}
-          {(activeCategory === "All" || activeCategory === "No Insurance Required") && (
+          {/* Insurance Section */}
+          {(activeCategory === "All" || activeCategory === "Insurance Required") && (
             <div>
               <div className="flex flex-col mb-10">
-                <h3 className="text-3xl font-bold uppercase tracking-tighter text-black">No Insurance Required</h3>
+                <h3 className="text-3xl font-bold uppercase tracking-tighter text-black">Insurance Required</h3>
                 <div className="h-1 w-20 bg-accent mt-2" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -1474,11 +1474,11 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
             </div>
           )}
 
-          {/* Insurance Required Section */}
-          {(activeCategory === "All" || activeCategory === "Insurance Required") && (
+          {/* No Insurance Section */}
+          {(activeCategory === "All" || activeCategory === "No Insurance Required") && (
             <div>
               <div className="flex flex-col mb-10">
-                <h3 className="text-3xl font-bold uppercase tracking-tighter text-black">Insurance Required</h3>
+                <h3 className="text-3xl font-bold uppercase tracking-tighter text-black">No Insurance Required</h3>
                 <div className="h-1 w-20 bg-accent mt-2" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
