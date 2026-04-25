@@ -11,61 +11,47 @@ import modelConfig from '../models-config.json';
 
 const modelData = [
   {
-    "model": "2019_lamborghini_huracan_evo.glb",
+    "model": "2025_lamborghini_urus_se.glb",
     "yOffset": -0.05,
     "scaleMult": 0.55,
     "rotationOffset": 0
   },
   {
-    "model": "mclaren_570s_coupe.glb",
+    "model": "rolls-royce_2020_mansory_wraith.glb",
     "yOffset": -0.05,
     "scaleMult": 0.58,
     "rotationOffset": 0
   },
   {
-    "model": "2021_cadillac_escalade_premium_luxury.glb",
+    "model": "2023_chevrolet_corvette_z06.glb",
     "yOffset": -0.1,
     "scaleMult": 0.65,
-    "rotationOffset": 0
-  },
-  {
-    "model": "rolls.glb",
-    "yOffset": -0.05,
-    "scaleMult": 0.648,
     "rotationOffset": 0
   }
 ];
 
 const sections = [
   {
-    label: "01 — Italian Masterpiece",
-    title: "Lamborghini\nHuracan EVO",
-    desc: "The evolution of the most successful V10 Lamborghini. Experience the perfect fusion of technology and performance in Mantis Green.",
-    tags: ["V10", "640 HP", "AWS"],
-    color: "#4CAF50",
-    accent: "#E63946"
+    label: "01 — The Future of Power",
+    title: "Urus SE\nHybrid",
+    desc: "The first PHEV (Plug-in Hybrid Electric Vehicle) Super SUV. A perfect balance of electrification and pure Lamborghini DNA.",
+    tags: ["Hybrid V8", "800 HP", "Electric Mode"],
+    color: "#FF9800",
+    accent: "#FF9800"
   },
   {
-    label: "02 — British Precision",
-    title: "McLaren\n570s",
-    desc: "A pure McLaren. Delivering the thrills of a supercar in a versatile package, finished in stealthy Black on Black.",
-    tags: ["Twin Turbo V8", "562 HP", "Carbon Fiber"],
+    label: "02 — Absolute Pinnacle",
+    title: "Mansory\nWraith",
+    desc: "The world's most luxurious grand tourer, elevated by Mansory. Starlight headliner, suicide doors, and unmatched presence.",
+    tags: ["V12 Twin-Turbo", "624 HP", "Mansory Spec"],
     color: "#1A1A1A",
     accent: "#E63946"
   },
   {
-    label: "03 — American Luxury",
-    title: "Cadillac\nEscalade",
-    desc: "The icon of luxury SUVs, enhanced with custom star-headliner and premium appointments. Pure black excellence.",
-    tags: ["V8", "420 HP", "Custom Stars"],
-    color: "#1A1A1A",
-    accent: "#E63946"
-  },
-  {
-    label: "04 — Absolute Pinnacle",
-    title: "Rolls-Royce\nCullinan",
-    desc: "The first all-terrain SUV from Rolls-Royce. Effortless everywhere, providing supreme comfort and presence in pure White.",
-    tags: ["V12", "Bespoke", "Starlight"],
+    label: "03 — American Precision",
+    title: "Corvette\nZ06",
+    desc: "The high-performance version of the Eighth Generation Corvette. Featuring the most powerful naturally aspirated V8 in production.",
+    tags: ["Flat-Plane V8", "670 HP", "Z07 Package"],
     color: "#FFFFFF",
     accent: "#E63946"
   }

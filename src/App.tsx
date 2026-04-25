@@ -3,6 +3,7 @@ import { ChevronRight, Menu, X, MapPin, Phone, ArrowUpRight, MousePointer2 } fro
 import Showcase from "./components/Showcase";
 import Inventory from "./components/Inventory";
 import { useState } from "react";
+import { supabase } from "./lib/supabase";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -596,7 +597,50 @@ export default function App() {
           <div className="bg-black/[0.02] border border-black/10 p-12 md:p-16 rounded-sm relative">
             <h3 className="text-2xl font-bold uppercase tracking-tight mb-2 text-black">Reserve Your Vehicle</h3>
             <p className="text-[10px] uppercase tracking-[0.3em] text-accent mb-10 block">Get in Touch</p>
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <form 
+              className="space-y-8" 
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const target = e.target as any;
+                const firstName = target[0].value;
+                const lastName = target[1].value;
+                const email = target[2].value;
+                const phone = target[3].value;
+                
+                if (!firstName || !email || !phone) {
+                  alert("Please fill in first name, email and phone.");
+                  return;
+                }
+
+                // Simple feedback
+                const submitBtn = e.currentTarget.querySelector('button');
+                if (submitBtn) {
+                  submitBtn.disabled = true;
+                  submitBtn.innerText = "SENDING...";
+                }
+
+                try {
+                  const { error } = await supabase.from('bookings').insert([{
+                    name: `${firstName} ${lastName} (Inquiry)`,
+                    email: email,
+                    phone: phone,
+                    booking_date: new Date().toISOString().split('T')[0],
+                    booking_time: "GENERAL INQUIRY"
+                  }]);
+                  if (error) throw error;
+                  alert("Thank you! We have received your inquiry and will contact you shortly.");
+                  target.reset();
+                } catch (err) {
+                  console.error(err);
+                  alert("Something went wrong. Please try again or call us at (786) 509-8435.");
+                } finally {
+                  if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "SUBMIT";
+                  }
+                }
+              }}
+            >
                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase tracking-widest text-black/30 font-bold">First name*</label>
