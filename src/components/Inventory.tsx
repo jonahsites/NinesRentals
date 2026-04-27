@@ -5,9 +5,9 @@ import { supabase, signInWithGoogle } from '../lib/supabase';
 import { format, isWithinInterval, parseISO, isAfter, isBefore, startOfDay } from 'date-fns';
 import { User } from '@supabase/supabase-js';
 
-const categories = ["All", "Ferrari", "Lamborghini", "Rolls Royce", "Porsche", "McLaren", "Bugatti", "Corvette", "Mercedes", "Cadillac", "BMW", "Chevy", "Audi", "Genesis", "Tesla", "Range Rover"];
+export const categories = ["All", "Ferrari", "Lamborghini", "Rolls Royce", "Porsche", "McLaren", "Bugatti", "Corvette", "Mercedes", "Cadillac", "BMW", "Chevy", "Audi", "Genesis", "Tesla", "Range Rover"];
 
-interface Car {
+export interface Car {
   id: number;
   name: string;
   category: string;
@@ -21,7 +21,7 @@ interface Car {
   requiresInsurance: boolean;
 }
 
-const cars: Car[] = [
+export const cars: Car[] = [
   // NO INSURANCE REQUIRED (RENTAL ONLY)
   { 
     id: 1, 

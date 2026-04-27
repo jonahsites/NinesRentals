@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { ChevronRight, Menu, X, MapPin, Phone, ArrowUpRight, MousePointer2 } from "lucide-react";
 import Showcase from "./components/Showcase";
-import Inventory from "./components/Inventory";
+import Inventory, { cars } from "./components/Inventory";
 import { useState } from "react";
 import { supabase } from "./lib/supabase";
 
@@ -606,9 +606,10 @@ export default function App() {
                 const lastName = target[1].value;
                 const email = target[2].value;
                 const phone = target[3].value;
+                const vehicle = target[4].value;
                 
-                if (!firstName || !email || !phone) {
-                  alert("Please fill in first name, email and phone.");
+                if (!firstName || !email || !phone || !vehicle) {
+                  alert("Please fill in first name, email, phone, and select a vehicle of interest.");
                   return;
                 }
 
@@ -621,7 +622,7 @@ export default function App() {
 
                 try {
                   const { error } = await supabase.from('bookings').insert([{
-                    name: `${firstName} ${lastName} (Inquiry)`,
+                    name: `${firstName} ${lastName} (Inquiry: ${vehicle})`,
                     email: email,
                     phone: phone,
                     booking_date: new Date().toISOString().split('T')[0],
@@ -644,20 +645,30 @@ export default function App() {
                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase tracking-widest text-black/30 font-bold">First name*</label>
-                    <input type="text" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" />
+                    <input type="text" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" required />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase tracking-widest text-black/30 font-bold">Last name*</label>
-                    <input type="text" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" />
+                    <input type="text" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" required />
                   </div>
                </div>
                <div className="space-y-2">
                   <label className="text-[9px] uppercase tracking-widest text-black/30 font-bold">Email*</label>
-                  <input type="email" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" />
+                  <input type="email" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" required />
                </div>
                <div className="space-y-2">
                   <label className="text-[9px] uppercase tracking-widest text-black/30 font-bold">Phone*</label>
-                  <input type="tel" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" />
+                  <input type="tel" className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black" placeholder="786-000-0000" required />
+               </div>
+               <div className="space-y-2">
+                  <label className="text-[9px] uppercase tracking-widest text-black/30 font-bold">Vehicle of Interest*</label>
+                  <select className="w-full bg-black/5 border-b border-black/10 py-4 focus:outline-none focus:border-accent transition-colors text-black appearance-none" required>
+                    <option value="">Select a vehicle</option>
+                    {cars.map(car => (
+                      <option key={car.id} value={car.name}>{car.name}</option>
+                    ))}
+                    <option value="General Inquiry">Other / General Inquiry</option>
+                  </select>
                </div>
                <button className="w-full py-6 bg-accent text-white text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition-all">Submit</button>
             </form>
