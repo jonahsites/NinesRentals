@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { ChevronRight, Menu, X, MapPin, Phone, ArrowUpRight, MousePointer2 } from "lucide-react";
+import { ChevronRight, Menu, X, MapPin, Phone, ArrowUpRight, MousePointer2, ShieldCheck, Clock, Zap, Heart, Smartphone, Calendar, CheckCircle2 } from "lucide-react";
 import Showcase from "./components/Showcase";
 import Inventory, { cars } from "./components/Inventory";
 import { useState } from "react";
@@ -7,11 +7,11 @@ import { supabase } from "./lib/supabase";
 
 const navLinks = [
   { name: "Home", href: "#home" },
-  { name: "Our Collection", type: "page" },
-  { name: "About Us", href: "#about" },
+  { name: "Fleet", type: "page" },
+  { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
+  { name: "Journal", href: "#blog" },
   { name: "Contact", href: "#contact" },
-  { name: "Investors", href: "#" },
 ];
 
 const faqItems = [
@@ -205,10 +205,10 @@ export default function App() {
                 Miami / Broward / Palm Beach
               </p>
               <h1 className="text-6xl md:text-7xl lg:text-[88px] font-bold leading-[0.9] uppercase tracking-[-3px] mb-8 text-black">
-                Luxury <span className="text-outline block mt-2">Rentals</span> Made Simple.
+                Exotic <span className="text-outline block mt-2">Rentals</span> Miami.
               </h1>
               <p className="text-black/60 text-base leading-relaxed max-w-[420px] mb-12 font-light">
-                Drive the experience, not just the car. Premium exotic and luxury vehicles available for daily rentals in Miami. Seamless booking, verified renters, and top-tier service built for convenience and trust.
+                Drive the extraordinary with Miami's premier exotic car rental service. Specializing in Lamborghini, Ferrari, McLaren, and Rolls-Royce rentals. Experience precision, luxury, and thrill on every Miami road.
               </p>
               
               <div className="flex items-center gap-8">
@@ -489,28 +489,62 @@ export default function App() {
             </div>
           </div>
 
-          {/* Why Choose Us */}
-          <div>
-            <div className="mb-16">
-                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-4 block">Excellence</span>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase mb-4 text-black">Why Choose Us</h2>
-                <p className="text-black/40 text-sm tracking-widest uppercase">Unmatched Luxury and Service</p>
+      {/* Services Section */}
+      <section id="services" className="relative z-20 py-32 bg-white px-10 md:px-16 border-t border-black/5">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-4 block">Excellence</span>
+              <h2 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase leading-[0.85] text-black">Our <br /><span className="text-accent italic">Services.</span></h2>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               {[
-                { title: "Personalized Service", desc: "Enjoy dedicated support from our team ensuring a seamless rental experience tailored to you." },
-                { title: "Meticulous Care", desc: "Every vehicle is maintained to showroom standards for your safety and satisfaction." },
-                { title: "Florida Experts", desc: "We know the best routes and requirements across Miami, Broward, and Palm Beach." },
-                { title: "Transparent Pricing", desc: "No hidden fees. What you see is what you pay for your experience." }
-              ].map((item, i) => (
-                <div key={i} className="p-8 border border-black/5 bg-black/[0.01] hover:bg-black/[0.03] transition-editorial">
-                  <h3 className="text-sm font-bold mb-4 uppercase tracking-widest text-accent">{item.title}</h3>
-                  <p className="text-black/40 text-[11px] leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+            <p className="text-black/40 text-[10px] max-w-[280px] font-light leading-relaxed uppercase tracking-widest hidden md:block">
+              Comprehensive automotive solutions designed for the most discerning Miami travelers.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-black/5 border border-black/5">
+            {[
+              { icon: MapPin, title: "Miami-Wide Delivery", desc: "Doorstep delivery to Miami Beach, Wynwood, Coral Gables, and MIA Airport terminals. Wherever you are, we bring the luxury to you." },
+              { icon: ShieldCheck, title: "Insurance Solutions", desc: "Flexible options for all renters. Whether you have your own comprehensive coverage or need our assistance, we make the process seamless." },
+              { icon: Clock, title: "24/7 Premium Support", desc: "Concierge-level service around the clock. From booking to drop-off, our Miami-based team is always available for your needs." },
+              { icon: Zap, title: "Instant Verification", desc: "Fast-tracked verification for exotic car rentals. Skip the paperwork and get behind the wheel of your dream car faster." },
+              { icon: Heart, title: "Faith-Driven Excellence", desc: "Built on principles of reliability, trust, and exceptional service. We treat every client like family, ensuring a world-class experience." },
+              { icon: Smartphone, title: "Simplified Booking", desc: "A streamlined digital experience designed for the modern Miami traveler. Book your Lamborghini or Ferrari in minutes." },
+            ].map((service, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: i * 0.05 }}
+                viewport={{ once: true }}
+                className="bg-white p-12 group hover:bg-black/[0.01] transition-all"
+              >
+                <service.icon size={32} className="mb-8 text-accent grayscale group-hover:grayscale-0 transition-all" strokeWidth={1} />
+                <h3 className="text-xl font-bold uppercase tracking-tight mb-4 group-hover:text-accent transition-colors text-black">{service.title}</h3>
+                <p className="text-black/40 text-[11px] leading-relaxed uppercase tracking-widest font-light">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet SEO Overview Section */}
+      <section className="py-16 bg-white px-10 md:px-16 border-t border-black/5">
+        <div className="max-w-[1400px] mx-auto opacity-40">
+          <h4 className="text-[10px] font-bold uppercase tracking-widest mb-8 text-black">Our Fleet Includes</h4>
+          <div className="flex flex-wrap gap-x-8 gap-y-4 text-[9px] uppercase tracking-widest font-medium text-black">
+            <span>Lamborghini Huracan EVO Spyder</span>
+            <span>Ferrari F8 Tributo</span>
+            <span>Rolls-Royce Cullinan</span>
+            <span>McLaren 720S</span>
+            <span>Porsche 911 GT3</span>
+            <span>Mercedes-Benz G63 AMG</span>
+            <span>Corvette Z06</span>
+            <span>Cadillac Escalade ESV</span>
+            <span>And More Luxury Vehicles...</span>
+          </div>
+        </div>
+      </section>
         </div>
       </section>
 
@@ -557,6 +591,115 @@ export default function App() {
                 </AnimatePresence>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Locations We Serve Section */}
+      <section id="locations" className="relative z-20 py-32 bg-black text-white px-10 md:px-16 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto text-center mb-20 px-8">
+          <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Ready Where You Are</span>
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-[0.85] mb-8">Serving All Of <br/> <span className="text-accent italic">South Florida.</span></h2>
+          <p className="text-white/40 text-base leading-relaxed max-w-2xl mx-auto font-light">
+            We provide doorstep delivery and pickup service across major South Florida locations. Whether you're at the airport, a luxury hotel, or a private villa, we bring the experience to you.
+          </p>
+        </div>
+        
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { name: "Miami Beach", desc: "Ocean Drive & Collins Ave" },
+            { name: "Miami Airport", desc: "MIA & Private Jet Terminals" },
+            { name: "Downtown Miami", desc: "Business & Art Districts" },
+            { name: "Coral Gables", desc: "Elegant Living" },
+            { name: "Fort Lauderdale", desc: "Las Olas & Beaches" },
+            { name: "Palm Beach", desc: "Luxury & Sophistication" },
+            { name: "Boca Raton", desc: "Premium Coastal Driving" },
+            { name: "Wynwood", desc: "Miami's Art Scene" }
+          ].map((loc, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              viewport={{ once: true }}
+              className="p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-all rounded-sm group cursor-default"
+            >
+              <h3 className="text-lg font-bold uppercase tracking-tight mb-2 group-hover:text-accent transition-colors">{loc.name}</h3>
+              <p className="text-[9px] uppercase tracking-widest text-white/30">{loc.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className="relative z-20 py-32 bg-white px-10 md:px-16 border-t border-black/5">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 px-8 lg:px-0">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-4 block">Insights & News</span>
+              <h2 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-none text-black">The <span className="text-accent italic">Journal.</span></h2>
+            </div>
+            <p className="text-black/40 text-sm max-w-sm font-light leading-relaxed uppercase tracking-widest">
+              Tips, guides, and stories from the world of elite automotive culture in Miami.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                title: "Top 10 Exotic Cars to Rent in Miami",
+                desc: "Discover which supercars dominate the streets of Miami Beach this season...",
+                tag: "Guides",
+                img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                title: "Best Driving Routes in Miami for Supercars",
+                desc: "From Ocean Drive to the Overseas Highway, these are the routes every driver needs to experience...",
+                tag: "Routes",
+                img: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                title: "How Much Does Exotic Car Rental Cost in Miami?",
+                desc: "A complete breakdown of pricing, insurance, and what to expect when booking your dream ride...",
+                tag: "Pricing",
+                img: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800"
+              }
+            ].map((post, i) => (
+              <motion.article 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group cursor-pointer"
+              >
+                <div className="aspect-16/10 overflow-hidden mb-8 border border-black/5 bg-black/5 rounded-sm">
+                  <img src={post.img} alt={post.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 font-sans" />
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-accent mb-4 block">{post.tag}</span>
+                <h3 className="text-2xl font-bold uppercase tracking-tight mb-4 group-hover:text-accent transition-colors leading-tight text-black">{post.title}</h3>
+                <p className="text-black/40 text-xs leading-relaxed font-light mb-6 line-clamp-2">{post.desc}</p>
+                <div className="flex items-center gap-2 text-black text-[9px] font-bold uppercase tracking-widest border-b border-black/5 w-fit pb-1 group-hover:border-accent transition-all">
+                  Read Article <ArrowUpRight size={10} />
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof / Trust Section */}
+      <section className="py-20 bg-black text-white px-10 md:px-16 overflow-hidden border-y border-white/5">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="text-left">
+            <h3 className="text-2xl font-bold uppercase tracking-tighter mb-2">Trusted in Miami</h3>
+            <p className="text-white/40 text-[10px] uppercase tracking-widest">500+ successful rentals across Miami Beach & Fort Lauderdale</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
+             <span className="text-xl font-black italic tracking-tighter uppercase">Vogue</span>
+             <span className="text-xl font-black italic tracking-tighter uppercase">Forbes</span>
+             <span className="text-xl font-black italic tracking-tighter uppercase">Complex</span>
+             <span className="text-xl font-black italic tracking-tighter uppercase">GQ</span>
           </div>
         </div>
       </section>
