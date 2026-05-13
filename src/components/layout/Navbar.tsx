@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Phone } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [

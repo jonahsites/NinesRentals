@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useParams, useNavigate, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Fleet from "./pages/Fleet";
@@ -28,6 +29,7 @@ function Meta({ title, description }: { title: string; description: string }) {
 export default function App() {
   return (
     <Layout>
+      <Analytics />
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<HomeWithMeta />} />
