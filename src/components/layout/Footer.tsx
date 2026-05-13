@@ -15,7 +15,10 @@ export default function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.phone || !formData.vehicle) return;
+    if (!formData.phone || !formData.vehicle || formData.vehicle === "") {
+      alert("Please provide your phone number and select a specific vehicle to inquire about.");
+      return;
+    }
     
     setStatus("submitting");
     // Simulate API call

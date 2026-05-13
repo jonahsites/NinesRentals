@@ -68,7 +68,7 @@ export default function Fleet() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 className="group relative bg-white border border-black/5 rounded-sm overflow-hidden hover:border-accent/30 transition-all duration-500 cursor-pointer"
-                onClick={() => navigate(`/fleet/${car.slug}`)}
+                onClick={() => navigate(`/${car.slug}`)}
               >
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <img 

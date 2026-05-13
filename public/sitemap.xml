@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nines-rentals.vercel.app/</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://nines-rentals.vercel.app/miami-exotic-car-rentals</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://nines-rentals.vercel.app/fleet</loc>
@@ -19,7 +13,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/blog</loc>
+    <loc>https://nines-rentals.vercel.app/miami-exotic-car-rentals</loc>
     <lastmod>2026-05-13</lastmod>
     <priority>0.8</priority>
   </url>
@@ -29,53 +23,43 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/miami-beach-exotic-car-rental</loc>
+    <loc>https://nines-rentals.vercel.app/blog</loc>
+    <lastmod>2026-05-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nines-rentals.vercel.app/miami-range-rover-lwb-2023</loc>
     <lastmod>2026-05-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/miami-airport-luxury-car-rental</loc>
+    <loc>https://nines-rentals.vercel.app/miami-corvette-c8-eray-2024</loc>
     <lastmod>2026-05-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/downtown-miami-supercar-rental</loc>
+    <loc>https://nines-rentals.vercel.app/miami-porsche-911-turbo-s</loc>
     <lastmod>2026-05-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-range-rover-lwb-2023</loc>
+    <loc>https://nines-rentals.vercel.app/miami-lamborghini-huracan-evo</loc>
     <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-corvette-c8-eray-2024</loc>
+    <loc>https://nines-rentals.vercel.app/miami-rolls-royce-cullinan</loc>
     <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-porsche-911-turbo-s</loc>
+    <loc>https://nines-rentals.vercel.app/miami-ferrari-f8-tributo</loc>
     <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-lamborghini-huracan-evo</loc>
+    <loc>https://nines-rentals.vercel.app/miami-mclaren-720s</loc>
     <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-rolls-royce-cullinan</loc>
-    <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-ferrari-f8-tributo</loc>
-    <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nines-rentals.vercel.app/fleet/miami-mclaren-720s</loc>
-    <lastmod>2026-05-13</lastmod>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>

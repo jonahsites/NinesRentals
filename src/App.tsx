@@ -107,10 +107,10 @@ export default function App() {
         } />
 
         {/* Car Details Routes */}
-        <Route path="/fleet/:slug" element={<CarDetailsWithMeta />} />
+        <Route path="/:slug" element={<CarDetailsWithMeta />} />
         
         {/* Legacy redirects for car details */}
-        <Route path="/:slug" element={<CarDetailsLegacyRedirect />} />
+        <Route path="/fleet/:slug" element={<CarDetailsLegacyRedirect />} />
         <Route path="/miami-:carSlug" element={<CarDetailsLegacyRedirect />} />
       </Routes>
     </Layout>
@@ -180,7 +180,7 @@ function CarDetailsLegacyRedirect() {
   useEffect(() => {
     const finalSlug = slug || `miami-${carSlug}`;
     if (finalSlug) {
-      navigate(`/fleet/${finalSlug}`, { replace: true });
+      navigate(`/${finalSlug}`, { replace: true });
     }
   }, [navigate, slug, carSlug]);
   return null;

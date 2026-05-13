@@ -580,8 +580,13 @@ export default function Home() {
                 const phone = target[3].value;
                 const vehicle = target[4].value;
                 
-                if (!firstName || !email || !phone || !vehicle) {
-                  alert("Please fill in first name, email, phone, and select a vehicle of interest.");
+                if (!phone || !vehicle || vehicle === "") {
+                  alert("Please provide your phone number and select a specific vehicle to inquire about.");
+                  return;
+                }
+                
+                if (!firstName || !email) {
+                  alert("Please fill in your name and email.");
                   return;
                 }
 
