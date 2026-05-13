@@ -90,7 +90,7 @@ export default function Home() {
               
               <div className="flex items-center gap-8">
                 <Link 
-                  to="/miami-exotic-car-fleet"
+                  to="/fleet"
                   className="bg-black text-white px-10 py-5 text-sm font-bold uppercase tracking-[0.1em] hover:bg-accent transition-colors pointer-events-auto"
                 >
                   View Inventory
@@ -287,7 +287,7 @@ export default function Home() {
               </div>
             </div>
             <Link 
-              to="/miami-exotic-car-fleet"
+              to="/fleet"
               className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] border-b border-accent pb-2 hover:gap-8 transition-all"
             >
               Explore Our Collection <ArrowUpRight className="text-accent" />

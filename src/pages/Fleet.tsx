@@ -4,7 +4,7 @@ import { Search, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cars } from "../constants";
 
-const categories = ["All", "Exotic", "Sports", "SUV"];
+const categories = ["All", "Exotic", "Luxury", "Sports", "SUV"];
 
 export default function Fleet() {
   const [search, setSearch] = useState("");
@@ -68,7 +68,7 @@ export default function Fleet() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 className="group relative bg-white border border-black/5 rounded-sm overflow-hidden hover:border-accent/30 transition-all duration-500 cursor-pointer"
-                onClick={() => navigate(`/${car.slug}`)}
+                onClick={() => navigate(`/fleet/${car.slug}`)}
               >
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <img 

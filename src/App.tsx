@@ -32,8 +32,7 @@ export default function App() {
         {/* Main Pages */}
         <Route path="/" element={<HomeWithMeta />} />
         <Route path="/miami-exotic-car-rentals" element={<HomeWithMeta />} />
-        <Route path="/miami-exotic-car-fleet" element={<FleetWithMeta />} />
-        <Route path="/fleet" element={<LegacyRedirect to="/miami-exotic-car-fleet" />} />
+        <Route path="/fleet" element={<FleetWithMeta />} />
         
         {/* SEO pages */}
         <Route path="/miami-beach-exotic-car-rental" element={
@@ -107,11 +106,11 @@ export default function App() {
           />
         } />
 
-        {/* Car Details Routes - Generic slug MUST be last to avoid catching subpages */}
-        <Route path="/:slug" element={<CarDetailsWithMeta />} />
+        {/* Car Details Routes */}
+        <Route path="/fleet/:slug" element={<CarDetailsWithMeta />} />
         
         {/* Legacy redirects for car details */}
-        <Route path="/fleet/:slug" element={<CarDetailsLegacyRedirect />} />
+        <Route path="/:slug" element={<CarDetailsLegacyRedirect />} />
         <Route path="/miami-:carSlug" element={<CarDetailsLegacyRedirect />} />
       </Routes>
     </Layout>
@@ -181,7 +180,7 @@ function CarDetailsLegacyRedirect() {
   useEffect(() => {
     const finalSlug = slug || `miami-${carSlug}`;
     if (finalSlug) {
-      navigate(`/${finalSlug}`, { replace: true });
+      navigate(`/fleet/${finalSlug}`, { replace: true });
     }
   }, [navigate, slug, carSlug]);
   return null;

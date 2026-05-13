@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck, Clock, ArrowUpRight, Phone, MapPin } from "lucide-react";
 import { cars } from "../constants";
 
@@ -9,6 +9,23 @@ export default function CarDetails() {
   const navigate = useNavigate();
   const car = cars.find(c => c.slug === slug);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [bookingModal, setBookingModal] = useState(false);
+  const [bookingStatus, setBookingStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [bookingData, setBookingData] = useState({
+    name: "",
+    phone: "",
+    date: ""
+  });
+
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!bookingData.phone) return;
+    setBookingStatus("submitting");
+    setTimeout(() => {
+      console.log("Booking Request:", { ...bookingData, car: car?.name });
+      setBookingStatus("success");
+    }, 1500);
+  };
 
   useEffect(() => {
     if (!car) {
@@ -146,18 +163,25 @@ export default function CarDetails() {
             </div>
 
             <div className="mt-auto space-y-6">
+              <button 
+                onClick={() => setBookingModal(true)}
+                className="flex items-center justify-center gap-3 w-full py-6 bg-accent text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-black transition-all"
+              >
+                Book This Vehicle <ArrowUpRight size={16} />
+              </button>
+              
               <a 
                 href={`https://wa.me/17865098435?text=I'm%20interested%20in%20renting%20the%20${car.name}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-3 w-full py-6 bg-black text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-accent transition-all"
+                className="flex items-center justify-center gap-3 w-full py-6 border border-black/10 text-black text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all"
               >
-                Reserve via WhatsApp <ArrowUpRight size={16} />
+                Inquire via WhatsApp
               </a>
               
               <div className="p-8 bg-black/[0.02] border border-black/5 rounded-sm">
                 <p className="text-[11px] leading-relaxed text-black/50 uppercase tracking-widest">
-                  Ready to book? At NineRentals, we make it simple. No upfront payments required. Pay in person at delivery or pickup. Trust and reliability are our core values.
+                  Ready to book? At NinesRentals, we make it simple. No upfront payments required. Pay in person at delivery or pickup. Trust and reliability are our core values.
                 </p>
               </div>
 
@@ -167,6 +191,106 @@ export default function CarDetails() {
             </div>
           </div>
         </div>
+
+        {/* Booking Modal */}
+        <AnimatePresence>
+          {bookingModal && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setBookingModal(false)}
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              />
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-white w-full max-w-lg p-10 md:p-16 border border-black/10 rounded-sm shadow-2xl"
+              >
+                <button 
+                  onClick={() => setBookingModal(false)}
+                  className="absolute top-6 right-6 text-black/20 hover:text-black transition-colors"
+                >
+                  <X size={24} />
+                </button>
+
+                <div className="mb-10 text-center">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-4 block">Reservation / {car.name}</span>
+                  <h3 className="text-3xl font-bold uppercase tracking-tighter text-black">Booking Request</h3>
+                </div>
+
+                {bookingStatus === "success" ? (
+                  <div className="py-10 text-center">
+                    <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                      <CheckCircle2 className="text-accent" size={40} />
+                    </div>
+                    <h4 className="text-xl font-bold uppercase tracking-widest mb-4">Request Received</h4>
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-black/50 leading-relaxed mb-10">Our concierge team has received your request for the {car.name}. We will contact you at the phone number provided within 30 minutes.</p>
+                    <button 
+                      onClick={() => setBookingModal(false)}
+                      className="w-full py-5 bg-black text-white text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-accent transition-all"
+                    >
+                      Close Window
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleBookingSubmit} className="space-y-6">
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-[9px] font-bold uppercase tracking-widest text-black/40 ml-1">Full Name</label>
+                          <input 
+                            type="text" 
+                            required
+                            value={bookingData.name}
+                            onChange={(e) => setBookingData({...bookingData, name: e.target.value})}
+                            className="w-full bg-black/5 border border-black/5 px-6 py-4 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-accent transition-all"
+                            placeholder="John Doe"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[9px] font-bold uppercase tracking-widest text-black/40 ml-1">Phone Number *</label>
+                          <input 
+                            type="tel" 
+                            required
+                            value={bookingData.phone}
+                            onChange={(e) => setBookingData({...bookingData, phone: e.target.value})}
+                            className="w-full bg-black/5 border border-black/5 px-6 py-4 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-accent transition-all"
+                            placeholder="+1 (---) --- ----"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[9px] font-bold uppercase tracking-widest text-black/40 ml-1">Preferred Pickup Date</label>
+                        <input 
+                          type="date" 
+                          required
+                          value={bookingData.date}
+                          onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
+                          className="w-full bg-black/5 border border-black/5 px-6 py-4 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-accent transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <button 
+                      type="submit"
+                      disabled={bookingStatus === "submitting"}
+                      className={`w-full py-6 bg-black text-white text-xs font-bold uppercase tracking-[0.3em] hover:bg-accent transition-all ${bookingStatus === "submitting" ? "opacity-50 cursor-not-allowed" : ""}`}
+                    >
+                      {bookingStatus === "submitting" ? "Processing..." : "Complete Booking"}
+                    </button>
+                    
+                    <p className="text-[9px] text-center uppercase tracking-widest text-black/30 leading-loose">
+                      By clicking complete, you agree to be contacted via text or phone regarding this rental.
+                    </p>
+                  </form>
+                )}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

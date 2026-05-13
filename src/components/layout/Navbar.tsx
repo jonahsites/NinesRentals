@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
-  { name: "Home", href: "/miami-exotic-car-rentals", type: "path" },
-  { name: "Fleet", href: "/miami-exotic-car-fleet", type: "path" },
-  { name: "About", href: "/miami-exotic-car-rentals#about", type: "hash" },
-  { name: "Services", href: "/miami-exotic-car-rentals#services", type: "hash" },
+  { name: "Home", href: "/", type: "path" },
+  { name: "Fleet", href: "/fleet", type: "path" },
+  { name: "About", href: "/#about", type: "hash" },
+  { name: "Services", href: "/#services", type: "hash" },
   { name: "Journal", href: "/blog", type: "path" },
   { name: "Contact", href: "/contact-miami-exotic-cars", type: "path" },
 ];
