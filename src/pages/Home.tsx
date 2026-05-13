@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Phone, MapPin, ChevronRight, CheckCircle2, ShieldCheck, Clock, Zap, Heart, Smartphone } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";

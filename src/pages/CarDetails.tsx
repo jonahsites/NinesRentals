@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck, Clock, ArrowUpRight, Phone, MapPin } from "lucide-react";
 import { cars } from "../constants";
