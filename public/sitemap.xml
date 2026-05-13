@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ninesrentals.com/</loc>
+    <loc>https://nines-rentals.vercel.app/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ninesrentals.com/#fleet</loc>
+    <loc>https://nines-rentals.vercel.app/#fleet</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ninesrentals.com/#services</loc>
+    <loc>https://nines-rentals.vercel.app/#services</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ninesrentals.com/#about</loc>
+    <loc>https://nines-rentals.vercel.app/#about</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ninesrentals.com/#blog</loc>
+    <loc>https://nines-rentals.vercel.app/#blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ninesrentals.com/#contact</loc>
+    <loc>https://nines-rentals.vercel.app/#contact</loc>
     <priority>0.7</priority>
   </url>
 </urlset>

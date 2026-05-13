@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ninesrentals.com/sitemap.xml
+Sitemap: https://nines-rentals.vercel.app/sitemap.xml
