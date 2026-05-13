@@ -34,14 +34,7 @@ export default function App() {
         <Route path="/miami-exotic-car-rentals" element={<HomeWithMeta />} />
         <Route path="/miami-exotic-car-fleet" element={<FleetWithMeta />} />
         <Route path="/fleet" element={<LegacyRedirect to="/miami-exotic-car-fleet" />} />
-
-        {/* Car Details Routes */}
-        <Route path="/:slug" element={<CarDetailsWithMeta />} />
         
-        {/* Legacy redirects for car details */}
-        <Route path="/fleet/:slug" element={<CarDetailsLegacyRedirect />} />
-        <Route path="/miami-:carSlug" element={<CarDetailsLegacyRedirect />} />
-
         {/* SEO pages */}
         <Route path="/miami-beach-exotic-car-rental" element={
           <StaticPage 
@@ -113,6 +106,13 @@ export default function App() {
             metaDesc="Explore Miami exotic car rental tips, luxury car guides, and supercar comparisons. Learn everything about renting Lamborghini, Ferrari, and more in Miami."
           />
         } />
+
+        {/* Car Details Routes - Generic slug MUST be last to avoid catching subpages */}
+        <Route path="/:slug" element={<CarDetailsWithMeta />} />
+        
+        {/* Legacy redirects for car details */}
+        <Route path="/fleet/:slug" element={<CarDetailsLegacyRedirect />} />
+        <Route path="/miami-:carSlug" element={<CarDetailsLegacyRedirect />} />
       </Routes>
     </Layout>
   );

@@ -12,7 +12,7 @@ export const cars = [
       "https://photos.smugmug.com/Saucy-Rentals-Car-Inventory-/Saucy-Rentals-Extra/Range-Rover-HSE-LWB-2023/i-P5Dsw9z/0/C84W9bXdfN9K6X3B9Lq6P9VrtT96mRbdTtt/L/IMG_8706-L.jpg",
       "https://photos.smugmug.com/Saucy-Rentals-Car-Inventory-/Saucy-Rentals-Extra/Range-Rover-HSE-LWB-2023/i-C85VbdT/0/MTY46T5T86QksmF9WdJv5KWhgX2GfF3rC68xX9vpt/L/IMG_8708-L.jpg"
     ],
-    category: "Luxury",
+    category: "SUV",
     specs: { engine: "V8", hp: "523", topSpeed: "155 mph" },
     hasInsurance: true
   },
@@ -69,7 +69,7 @@ export const cars = [
       "https://images.unsplash.com/photo-1631215539281-299f187a0705?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=1200"
     ],
-    category: "Luxury",
+    category: "SUV",
     specs: { engine: "V12 Twin-Turbo", hp: "563", topSpeed: "155 mph" },
     hasInsurance: true
   },

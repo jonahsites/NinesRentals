@@ -504,7 +504,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
-                <div className="aspect-16/10 overflow-hidden mb-8 border border-black/5 bg-black/5 rounded-sm">
+                <div className="aspect-[16/10] overflow-hidden mb-8 border border-black/5 bg-black/5 rounded-sm">
                   <img src={post.img} alt={post.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 font-sans" />
                 </div>
                 <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-accent mb-4 block">{post.tag}</span>
