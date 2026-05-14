@@ -984,10 +984,11 @@ export const cars: Car[] = [
 ];
 
 interface InventoryProps {
-  onClose: () => void;
+  onClose?: () => void;
+  standalone?: boolean;
 }
 
-const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
+const Inventory: React.FC<InventoryProps> = ({ onClose, standalone = false }) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
@@ -1149,12 +1150,13 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
 
   return (
     <motion.div 
-      initial={{ opacity: 0 }}
+      initial={standalone ? {} : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] bg-white overflow-y-auto px-6 py-10 md:px-16 text-black"
+      exit={standalone ? {} : { opacity: 0 }}
+      className={`${standalone ? 'relative' : 'fixed inset-0 z-[200] bg-white overflow-y-auto px-6 py-10 md:px-16'} text-black`}
     >
-      <div className="max-w-[1400px] mx-auto">
+      <div className={`${standalone ? 'max-w-[1400px] mx-auto px-6 py-10 md:px-16' : 'max-w-[1400px] mx-auto'}`}>
+
         {/* Detail Modal */}
         <AnimatePresence>
           {selectedCar && (
@@ -1406,12 +1408,14 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
               Note: Some vehicles may not be displayed on our website. For additional availability or exclusive bookings, please contact us directly.
             </p>
           </div>
-          <button 
-            onClick={onClose}
-            className="p-4 border border-black/10 rounded-full hover:bg-black/5 transition-colors pointer-events-auto text-black"
-          >
-            <X size={24} />
-          </button>
+          {!standalone && onClose && (
+            <button 
+              onClick={onClose}
+              className="p-4 border border-black/10 rounded-full hover:bg-black/5 transition-colors pointer-events-auto text-black"
+            >
+              <X size={24} />
+            </button>
+          )}
         </div>
 
         {/* Filters and Search */}
