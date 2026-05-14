@@ -19,9 +19,20 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API Endpoints - Keep empty or add future internal tools here
+  // API Endpoints
   app.get('/api/health', (req, res) => {
     res.json({ status: 'ok' });
+  });
+
+  // SEO Files - Serve explicitly for reliability
+  app.get('/sitemap.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml');
+    res.sendFile(path.join(process.cwd(), 'public', 'sitemap.xml'));
+  });
+
+  app.get('/robots.txt', (req, res) => {
+    res.header('Content-Type', 'text/plain');
+    res.sendFile(path.join(process.cwd(), 'public', 'robots.txt'));
   });
 
   // Vite middleware for development
