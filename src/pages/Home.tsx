@@ -43,6 +43,7 @@ export default function Home() {
       <SEO 
         title="Luxury Car Rental Miami | Exotic Rentals NinesRentals"
         description="NinesRentals offers premium luxury and exotic car rentals in Miami, Broward, and Palm Beach. Lamborghini, Rolls Royce, Porsche available. Book your experience today."
+        googleVerification="ddciC5avOCI_B7Cwvwfdics5HjjyzW3QrbPRPO-UaYc"
       />
 
       {/* Hero Content */}
