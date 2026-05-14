@@ -7,6 +7,7 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   keywords?: string;
+  googleVerification?: string;
 }
 
 export default function SEO({
@@ -15,7 +16,8 @@ export default function SEO({
   canonical = "https://nines-rentals.vercel.app",
   ogImage = "https://nines-rentals.vercel.app/og-image.jpg",
   ogType = "website",
-  keywords = "luxury car rental miami, exotic car rental, miami sports car rental, ninesrentals, miami rentals"
+  keywords = "luxury car rental miami, exotic car rental, miami sports car rental, ninesrentals, miami rentals, rent lamborghini miami, rolls royce miami",
+  googleVerification = ""
 }: SEOProps) {
   const siteTitle = title.includes("NinesRentals") ? title : `${title} | NinesRentals`;
 
@@ -25,6 +27,7 @@ export default function SEO({
       <title>{siteTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
       <link rel="canonical" href={canonical} />
 
       {/* Open Graph / Facebook */}

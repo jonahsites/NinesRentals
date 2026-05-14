@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { ChevronRight, Phone, ArrowUpRight, MapPin } from "lucide-react";
+import { ChevronRight, Phone, ArrowUpRight, MapPin, Instagram } from "lucide-react";
 import Showcase from "../components/Showcase";
 import Inventory, { cars } from "../components/Inventory";
 import { useState } from "react";
@@ -253,6 +253,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Local SEO / Areas Served Section */}
+      <section className="relative z-20 py-32 bg-black text-white px-10 md:px-16 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-fixed" />
+        </div>
+        
+        <div className="relative z-10 max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-6 block">Our Backyard</span>
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-[0.85] mb-12">Premier <br/> <span className="text-accent italic">South Florida</span> <br/> Service.</h2>
+              <p className="text-white/40 text-lg leading-relaxed max-w-md font-light mb-12">
+                We provide white-glove exotic car delivery and pickup services across the Tri-County area. Experience luxury wherever you are.
+              </p>
+              <div className="grid grid-cols-2 gap-x-12 gap-y-6">
+                {[
+                  { city: "Miami", areas: ["South Beach", "Brickell", "Wynwood", "Coral Gables"] },
+                  { city: "Fort Lauderdale", areas: ["Las Olas", "Hollywood", "Pompano Beach"] },
+                  { city: "Palm Beach", areas: ["West Palm", "Boca Raton", "Delray Beach"] },
+                  { city: "Sunny Isles", areas: ["Aventura", "Bal Harbour", "Golden Beach"] }
+                ].map((region, i) => (
+                  <div key={i} className="group">
+                    <p className="text-accent text-[10px] font-bold uppercase tracking-widest mb-3 border-b border-accent/20 pb-2">{region.city}</p>
+                    <ul className="space-y-1">
+                      {region.areas.map((area, j) => (
+                        <li key={j} className="text-[11px] text-white/30 uppercase tracking-widest">{area}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="aspect-square bg-white shadow-2xl p-2 rounded-sm rotate-3 group hover:rotate-0 transition-transform duration-700">
+                <img 
+                  src="https://photos.smugmug.com/Saucy-Rentals-Car-Inventory-/Saucy-Rentals-Exotic-SUVS/Lamborghini-Urus-Performante/i-h5q9w9S/0/NHqJzBv766Wz65w97q58XJ7hP7v7S7R5qP7Z/XL/IMG_0123-XL.jpg" 
+                  alt="Miami Luxury Service Area" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute top-8 left-8 bg-black/80 backdrop-blur-md px-6 py-4 flex flex-col -rotate-3">
+                  <span className="text-accent font-bold text-lg">24/7</span>
+                  <span className="text-white text-[8px] uppercase tracking-widest">Doorstep Delivery</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="relative z-20 py-32 bg-white px-10 md:px-16" id="faq">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-20">
@@ -289,6 +340,81 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer / SEO Section */}
+      <footer className="relative z-20 bg-white border-t border-black/5 pt-32 pb-16 px-10 md:px-16 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none select-none">
+          <span className="text-[300px] font-bold text-black uppercase leading-[0.8] block -ml-20">NINES</span>
+        </div>
+        
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            {/* Info */}
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tighter uppercase mb-8">NinesRentals.</span>
+              <p className="text-black/40 text-sm leading-relaxed mb-8 max-w-xs italic">
+                "God is good all the time." More than just a rental agency, we are a lifestyle brand committed to excellence and integrity in the heart of Miami.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://instagram.com/NinesRentals" target="_blank" rel="noreferrer" className="w-10 h-10 border border-black/10 rounded-full flex items-center justify-center hover:bg-accent hover:border-accent transition-colors">
+                  <Instagram size={16} />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/20 mb-8">Experience</h4>
+              <ul className="space-y-4">
+                {["Home", "Collection", "Services", "About", "Blog", "Contact"].map((link) => (
+                  <li key={link}>
+                    <Link to={link === "Home" ? "/" : `/${link.toLowerCase()}`} className="text-sm font-bold uppercase tracking-tight text-black hover:text-accent transition-colors">
+                      {link}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/20 mb-8">Services</h4>
+              <ul className="space-y-4 text-sm font-bold uppercase tracking-tight text-black/60">
+                <li>Exotic Rental</li>
+                <li>Private Chauffeur</li>
+                <li>Wedding Transport</li>
+                <li>Aero Photography</li>
+                <li>Vip Concierge</li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/20 mb-8">Inquiries</h4>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <Phone size={14} className="text-accent" />
+                  <a href="tel:7865098435" className="text-md font-bold tracking-tight text-black">+1 (786) 509-8435</a>
+                </div>
+                <div className="flex items-center gap-4">
+                  <MapPin size={14} className="text-accent" />
+                  <span className="text-md font-bold tracking-tight text-black">Miami, South Florida</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-black/30">
+              © 2025 NinesRentals / Built for Excellence.
+            </p>
+            <div className="flex gap-10">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">Privacy Policy</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">Terms of Service</span>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* Full Fleet Overlay */}
       <AnimatePresence>
