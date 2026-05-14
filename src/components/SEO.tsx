@@ -12,8 +12,8 @@ interface SEOProps {
 export default function SEO({
   title = "NinesRentals | Luxury & Exotic Car Rentals Miami",
   description = "Experience luxury with NinesRentals. Premium exotic car rentals in Miami, Broward, and Palm Beach. Lamborghini, Rolls Royce, Ferrari, and more.",
-  canonical = "https://ninesrentals.com",
-  ogImage = "https://ninesrentals.com/og-image.jpg",
+  canonical = "https://nines-rentals.vercel.app",
+  ogImage = "https://nines-rentals.vercel.app/og-image.jpg",
   ogType = "website",
   keywords = "luxury car rental miami, exotic car rental, miami sports car rental, ninesrentals, miami rentals"
 }: SEOProps) {
@@ -47,8 +47,8 @@ export default function SEO({
           "@type": "CarRentalBusiness",
           "name": "NinesRentals",
           "image": ogImage,
-          "@id": "https://ninesrentals.com",
-          "url": "https://ninesrentals.com",
+          "@id": "https://nines-rentals.vercel.app",
+          "url": "https://nines-rentals.vercel.app",
           "telephone": "+17865098435",
           "address": {
             "@type": "PostalAddress",
