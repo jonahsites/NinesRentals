@@ -33,7 +33,13 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
+    const publicPath = path.join(process.cwd(), 'public');
+    
+    // Serve public files first
+    app.use(express.static(publicPath));
+    // Serve built assets
     app.use(express.static(distPath));
+    
     app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
